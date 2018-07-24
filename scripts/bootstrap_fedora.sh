@@ -4,5 +4,6 @@
 dnf install \
   vim \
   python \
-  libcgroup-tools
+  libcgroup-tools \
+  time
 

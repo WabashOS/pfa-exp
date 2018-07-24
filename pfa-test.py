@@ -82,7 +82,7 @@ def findWorkingSz(bench):
     return sz
 
 cgReset()
-sz = findWorkingSz(['./unit/unit', '-s', '100000000'])
+sz = findWorkingSz(['./benchmarks/unit/unit', '-s', '100000000'])
 print("Working set sized: " + str(sz))
 cgDelete()
 
