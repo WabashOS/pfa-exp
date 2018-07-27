@@ -7,6 +7,7 @@ import pfa
 import datetime
 import pprint
 import csv
+import time
 
 scale_factors = [1.0, 0.75, 0.5, 0.25]
 
@@ -71,6 +72,7 @@ def handleLsbench(args, exp, benchmarks):
         print("Working Set: " + str(desc[1]) + " bytes")
    
 def handleRunSte(args, exp, benchmarks):
+    suiteStart = time.time()
     if args.output != None:
         resPath = args.output
     else:
@@ -82,11 +84,13 @@ def handleRunSte(args, exp, benchmarks):
         command = desc[0]
         baseSz = desc[1]
         for scale in scale_factors:
+            runStart = time.time()
             sz = int(baseSz*scale)
             print("Running " + bench + " at scale-factor: " + str(scale))
             exp.cgReset(sz)
             stat = exp.runTest(command)
             results.append([exp.datetime, exp.name, bench, " ".join(command), sz] + list(stat.values())) 
+            print("Took " + str(time.time() - runStart) + " seconds")
 
     if os.path.exists(resPath):
         with open(resPath, 'a', newline='') as resFile:
@@ -99,6 +103,7 @@ def handleRunSte(args, exp, benchmarks):
             writer.writerows(results)
 
     print("Run successful, results written to: " + resPath)
+    print("Took " + str(time.time() - suiteStart) + "seconds")
 
 # Parse command line arguments and call the appropriate function to handle the
 # commands.
