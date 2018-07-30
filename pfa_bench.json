@@ -1,1 +1,24 @@
-{"qsort": [["./benchmarks/qsort/qsort", "31457280"], 31735808], "unit": [["./benchmarks/unit/unit", "-s", "10000000"], 10223616]}
+{
+    "qsort": [
+        [
+            "./benchmarks/qsort/qsort",
+            "31457280"
+        ],
+        31735808
+    ],
+    "unit": [
+        [
+            "./benchmarks/unit/unit",
+            "-s",
+            "10000000"
+        ],
+        10223616
+    ],
+    "xhpl": [
+        [
+            "./benchmarks/hpl-2.2/bin/ubuntu/xhpl",
+            "./benchmarks/hpl-2.2/HPL.dat"
+        ],
+        14749696
+    ]
+}

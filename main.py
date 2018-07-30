@@ -62,7 +62,7 @@ def handleSize(args, exp, benchmarks):
 
         oldBenchs[benchName] = (command, sz)
         with open(args.output, 'w') as benchFile:
-            json.dump(oldBenchs, benchFile)
+            json.dump(oldBenchs, benchFile, indent=4)
 
 def handleLsbench(args, exp, benchmarks):
     print("Benchmarks:")

@@ -52,6 +52,7 @@
 #ifdef STDC_HEADERS
 void HPL_pdinfo
 (
+   char *                           CONFIG_PATH,
    HPL_T_test *                     TEST,
    int *                            NS,
    int *                            N,
@@ -82,7 +83,8 @@ void HPL_pdinfo
 )
 #else
 void HPL_pdinfo
-( TEST, NS, N, NBS, NB, PMAPPIN, NPQS, P, Q, NPFS, PF, NBMS, NBM, NDVS, NDV, NRFS, RF, NTPS, TP, NDHS, DH, FSWAP, TSWAP, L1NOTRAN, UNOTRAN, EQUIL, ALIGN )
+( CONFIG_PATH, TEST, NS, N, NBS, NB, PMAPPIN, NPQS, P, Q, NPFS, PF, NBMS, NBM, NDVS, NDV, NRFS, RF, NTPS, TP, NDHS, DH, FSWAP, TSWAP, L1NOTRAN, UNOTRAN, EQUIL, ALIGN )
+   char *                           CONFIG_PATH;
    HPL_T_test *                     TEST;
    int *                            NS;
    int *                            N;
@@ -121,6 +123,8 @@ void HPL_pdinfo
  *
  * Arguments
  * =========
+ *
+ * CONFIG_PATH Path to global configuration file (HPL.dat)
  *
  * TEST    (global output)               HPL_T_test *
  *         On entry, TEST  points to a testing data structure.  On exit,
@@ -294,10 +298,10 @@ void HPL_pdinfo
 /*
  * Open file and skip data file header
  */
-      if( ( infp = fopen( "HPL.dat", "r" ) ) == NULL )
+      if( ( infp = fopen( CONFIG_PATH, "r" ) ) == NULL )
       { 
          HPL_pwarn( stderr, __LINE__, "HPL_pdinfo",
-                    "cannot open file HPL.dat" );
+                    "cannot open file (HEYO): %s", CONFIG_PATH );
          error = 1; goto label_error;
       }
 

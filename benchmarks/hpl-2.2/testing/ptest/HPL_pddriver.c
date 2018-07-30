@@ -103,6 +103,7 @@ int main( ARGC, ARGV )
    HPL_T_ORDER                pmapping;
    HPL_T_FACT                 rpfa;
    HPL_T_SWAP                 fswap;
+   char *                     config_path;
 /* ..
  * .. Executable Statements ..
  */
@@ -147,10 +148,18 @@ int main( ARGC, ARGV )
  * 1            Equilibration (0=no,1=yes)
  * 8            memory alignment in double (> 0)
  */
-   HPL_pdinfo( &test, &ns, nval, &nbs, nbval, &pmapping, &npqs, pval, qval,
-               &npfs, pfaval, &nbms, nbmval, &ndvs, ndvval, &nrfs, rfaval,
-               &ntps, topval, &ndhs, ndhval, &fswap, &tswap, &L1notran,
-               &Unotran, &equil, &align );
+   if(ARGC == 2) {
+     HPL_pdinfo( ARGV[1], &test, &ns, nval, &nbs, nbval, &pmapping, &npqs, pval, qval,
+                 &npfs, pfaval, &nbms, nbmval, &ndvs, ndvval, &nrfs, rfaval,
+                 &ntps, topval, &ndhs, ndhval, &fswap, &tswap, &L1notran,
+                 &Unotran, &equil, &align );
+    } else {
+      HPL_pdinfo( "HPL.dat", &test, &ns, nval, &nbs, nbval, &pmapping, &npqs, pval, qval,
+                 &npfs, pfaval, &nbms, nbmval, &ndvs, ndvval, &nrfs, rfaval,
+                 &ntps, topval, &ndhs, ndhval, &fswap, &tswap, &L1notran,
+                 &Unotran, &equil, &align );
+    }
+
 /*
  * Loop over different process grids - Define process grid. Go to bottom
  * of process grid loop if this case does not use my process.
