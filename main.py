@@ -111,8 +111,8 @@ def main():
     parser = argparse.ArgumentParser(description=
         'Run a pfa command. You may provide a pre-configured benchmark file '
         '(typically generated using the "size" command). If no benchmark file is '
-        'provided, the tool will default to "./pfa_bench.json".i')
-    parser.add_argument('-b', '--benchfile', default='./pfa_bench.json')
+        'provided, the tool will default to "./test.json".i')
+    parser.add_argument('-b', '--benchfile', default='./test.json')
     parser.add_argument('-n', '--name', help="Name to use "
             "for this session, will be used in various outputs (called NAME in "
             "this documentation). Defaults to date/time 'mmddHHMM'")

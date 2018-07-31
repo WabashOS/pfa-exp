@@ -107,8 +107,8 @@ class PfaState:
 
         # binary search
         niter = 0
-        lower = upper / 2
-        sz = lower 
+        # lower = upper / 2
+        lower = 1 
         stat = {}
         while upper > lower:
             sz = int((upper + lower) / 2)

@@ -103,23 +103,6 @@ static inline void rmem_send_sync(void *iomem)
 	rmem_get_resp(iomem);
 }
 
-static void translate_pages(int fd, unsigned long *paddrs, void *mem, int n)
-{
-	int pgsize = sysconf(_SC_PAGESIZE);
-
-	for (int i = 0; i < n; i++) {
-		long pfn;
-		void *ptr = mem + i * pgsize;
-
-		pfn = get_pfn(fd, ptr);
-		if (pfn < 0) {
-			fprintf(stderr, "Could not translate %p\n", ptr);
-			exit(EXIT_FAILURE);
-		}
-		paddrs[i] = pfn * pgsize;
-	}
-}
-
 static inline void rmem_wait_req(void *iomem, int n)
 {
 	while (rmem_nreq(iomem) < n) {}

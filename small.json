@@ -1,10 +1,12 @@
 {
-    "qsort": [
+    "pagerank": [
         [
-            "./benchmarks/qsort/qsort",
-            "31457280"
+            "./benchmarks/pagerank/pagerank",
+            "-n",
+            "4096",
+            "./benchmarks/pagerank/pagerank-data-4096.bin"
         ],
-        31735808
+        134787072
     ],
     "unit": [
         [
@@ -20,5 +22,12 @@
             "./benchmarks/hpl-2.2/HPL.dat"
         ],
         14749696
+    ],
+    "qsort": [
+        [
+            "./benchmarks/qsort/qsort",
+            "31457280"
+        ],
+        31735808
     ]
 }

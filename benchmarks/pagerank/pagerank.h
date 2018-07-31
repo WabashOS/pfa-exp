@@ -2,7 +2,6 @@
 #define __PAGERANK_H__
 
 #include "memblade.h"
-
 #include <stdio.h>
 
 #define MAX_INFLIGHT 16
