@@ -78,9 +78,15 @@ def handleRunSte(args, exp, benchmarks):
     else:
         resPath = './results_' + exp.name + '.csv'
 
-    header = ['datetime', 'run', 'benchmark', 'command', 'size', 'runtime'] + exp.pfa_stat_lbl
+    if args.benchmark != None:
+        suite_names = args.benchmark.split(",")
+        suite = { k: benchmarks[k] for k in suite_names }
+    else:
+        suite = benchmarks
+
+    header = ['datetime', 'run', 'benchmark', 'command', 'size'] + exp.pfa_stat_lbl
     results = []
-    for bench,desc in benchmarks.items():
+    for bench,desc in suite.items():
         command = desc[0]
         baseSz = desc[1]
         for scale in scale_factors:
@@ -90,8 +96,8 @@ def handleRunSte(args, exp, benchmarks):
             exp.cgReset(sz)
             stat = exp.runTest(command)
             runTime = time.time() - runStart
-            results.append([exp.datetime, exp.name, bench, " ".join(command), sz, runTime] + list(stat.values())) 
-            print("Took " + runtime + " seconds")
+            results.append([exp.datetime, exp.name, bench, " ".join(command), sz] + list(stat.values())) 
+            print("Took " + str(runTime) + " seconds")
 
     if os.path.exists(resPath):
         with open(resPath, 'a', newline='') as resFile:
@@ -165,6 +171,8 @@ def main():
             'csv) to the provided results file. If the output file doesn\'t '
             'exist one will be created with the appropriate column headers. '
             'Defaults to ./results_NAME.csv')
+    runste_parser.add_argument('-b', '--benchmark', help=
+            'Run only the provided benchmarks (comma sepparated list of names).')
     args = parser.parse_args()
 
     if args.name == None:
