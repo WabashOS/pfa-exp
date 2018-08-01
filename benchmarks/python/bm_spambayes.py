@@ -1,3 +1,4 @@
+#!/bin/python
 
 """Wrapper script for testing the performance of SpamBayes.
 
@@ -16,8 +17,8 @@ def bench_spambayes(ham_classifier, messages):
 
 # data_dir = os.path.join(os.path.dirname(__file__), "data")
 data_dir = os.path.dirname(__file__)
-# mailbox = os.path.join(data_dir, "spambayes_mailbox")
-mailbox = os.path.join(data_dir, "test_mail")
+mailbox = os.path.join(data_dir, "spambayes_mailbox")
+#mailbox = os.path.join(data_dir, "small_mailbox")
 ham_data = os.path.join(data_dir, "spambayes_hammie.pkl")
 messages = list(mboxutils.getmbox(mailbox))
 ham_classifier = hammie.open(ham_data, "pickle", "r")

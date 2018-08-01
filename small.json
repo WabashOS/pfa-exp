@@ -11,7 +11,7 @@
             "python",
             "./benchmarks/python/bm_spambayes.py"
         ],
-        35426304
+        10608640
     ],
     "pagerank": [
         [
@@ -28,13 +28,5 @@
             "./benchmarks/linpack/small.dat"
         ],
         6770688
-    ],
-    "unit": [
-        [
-            "./benchmarks/unit/unit",
-            "-s",
-            "10000000"
-        ],
-        10223616
     ]
 }
