@@ -1,10 +1,11 @@
 {
-    "unit": [
+    "pagerank": [
         [
-            "./benchmarks/unit/unit",
-            "-s",
-            "10000000"
+            "./benchmarks/pagerank/pagerank",
+            "-n",
+            "4096",
+            "./benchmarks/pagerank/pagerank-data-4096.bin"
         ],
-        10223616
+        134787072
     ]
 }

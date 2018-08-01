@@ -3,31 +3,31 @@
         [
             "./benchmarks/pagerank/pagerank",
             "-n",
-            "2048",
-            "./benchmarks/pagerank/pagerank-data-2048.bin"
+            "8192",
+            "./benchmarks/pagerank/pagerank-data-8192.bin"
         ],
-        33726464
+        134787072
     ],
     "unit": [
         [
             "./benchmarks/unit/unit",
             "-s",
-            "10000000"
+            "100000000"
         ],
-        10223616
+        100122624
     ],
     "qsort": [
         [
             "./benchmarks/qsort/qsort",
-            "10000000"
+            "150000000"
         ],
-        10121216
+        31735808
     ],
     "xhpl": [
         [
             "./benchmarks/linpack/bin/xhpl",
-            "./benchmarks/linpack/small.dat"
+            "./benchmarks/linpack/med.dat"
         ],
-        6770688
+        12800000
     ]
 }
