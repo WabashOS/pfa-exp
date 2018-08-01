@@ -8,15 +8,17 @@ from collections import OrderedDict
 
 # This contains a bunch of global and state values used by various functions
 class PfaState:
-    def __init__(s, name):
+    def __init__(s, name, verbose=False):
         s.name = name
         s.datetime = datetime.datetime.now().strftime("%m%d%H%M")
         s.pfacg_path = "pfa/pfatst"
         s.pfacg_config = "memory,cpuset:" + s.pfacg_path
 
-        # Set this to None to print out sub-command outputs, sp.DEVNULL will
-        # supress subcommand outputs s.subcmd_print = None
-        s.subcmd_print = sp.DEVNULL
+        # Sets whether or not to print the outputs of subcommands.
+        if verbose:
+            s.subcmd_print = None
+        else:
+            s.subcmd_print = sp.DEVNULL
 
         # We assume the system has setup the parent cgroup ('pfa') with the desired
         # cpuset parameters. Grab them here so we can set them in the testing cgroup
@@ -87,8 +89,15 @@ class PfaState:
                 pfa_file.write(str(pid))
 
     # Run a single test and report statistics
-    def runTest(s, bench):
-        proc = sp.Popen(bench, preexec_fn=s.addSelfToPFA, stdout=sp.DEVNULL)
+    def runTest(s, bench, verbose=None):
+        if verbose == None:
+            printDev = s.subcmd_print
+        elif verbose == True:
+            printDev = None
+        else:
+            printDev = sp.DEVNULL
+
+        proc = sp.Popen(bench, preexec_fn=s.addSelfToPFA, stdout=printDev)
         ret = proc.wait()
         if ret != os.EX_OK:
             print("Benchmark exited with non-zero status, aborting\n")

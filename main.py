@@ -31,7 +31,7 @@ def handleRun(args, exp, benchmarks):
         return
 
     print("running: " + " ".join(command))
-    stat = exp.runTest(command)
+    stat = exp.runTest(command, verbose=True)
     print(exp.name + ":\n" + pprint.pformat(stat))
 
     
@@ -175,6 +175,10 @@ def main():
             'Run only the provided benchmarks (comma sepparated list of names).')
     args = parser.parse_args()
 
+    # # 'pflat' command
+    # runste_parser = subparsers.add_parser('pflat', help='Measure a single page-fault in detail.')
+    # runste_parser.set_defaults(func=handlePflat)
+    
     if args.name == None:
         # Used to create unique names (as needed)
         dtime = datetime.datetime.now()
