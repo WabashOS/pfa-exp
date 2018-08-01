@@ -78,7 +78,7 @@ def handleRunSte(args, exp, benchmarks):
     else:
         resPath = './results_' + exp.name + '.csv'
 
-    header = ['datetime', 'run', 'benchmark', 'command', 'size'] + exp.pfa_stat_lbl
+    header = ['datetime', 'run', 'benchmark', 'command', 'size', 'runtime'] + exp.pfa_stat_lbl
     results = []
     for bench,desc in benchmarks.items():
         command = desc[0]
@@ -89,8 +89,9 @@ def handleRunSte(args, exp, benchmarks):
             print("Running " + bench + " at scale-factor: " + str(scale))
             exp.cgReset(sz)
             stat = exp.runTest(command)
-            results.append([exp.datetime, exp.name, bench, " ".join(command), sz] + list(stat.values())) 
-            print("Took " + str(time.time() - runStart) + " seconds")
+            runTime = time.time() - runStart
+            results.append([exp.datetime, exp.name, bench, " ".join(command), sz, runTime] + list(stat.values())) 
+            print("Took " + runtime + " seconds")
 
     if os.path.exists(resPath):
         with open(resPath, 'a', newline='') as resFile:

@@ -1,4 +1,18 @@
 {
+    "qsort": [
+        [
+            "./benchmarks/qsort/qsort",
+            "10000000"
+        ],
+        10121216
+    ],
+    "python": [
+        [
+            "python",
+            "./benchmarks/python/bm_spambayes.py"
+        ],
+        35426304
+    ],
     "pagerank": [
         [
             "./benchmarks/pagerank/pagerank",
@@ -8,6 +22,13 @@
         ],
         33726464
     ],
+    "xhpl": [
+        [
+            "./benchmarks/linpack/bin/xhpl",
+            "./benchmarks/linpack/small.dat"
+        ],
+        6770688
+    ],
     "unit": [
         [
             "./benchmarks/unit/unit",
@@ -15,19 +36,5 @@
             "10000000"
         ],
         10223616
-    ],
-    "qsort": [
-        [
-            "./benchmarks/qsort/qsort",
-            "10000000"
-        ],
-        10121216
-    ],
-    "xhpl": [
-        [
-            "./benchmarks/linpack/bin/xhpl",
-            "./benchmarks/linpack/small.dat"
-        ],
-        6770688
     ]
 }
