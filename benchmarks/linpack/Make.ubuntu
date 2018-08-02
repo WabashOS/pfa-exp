@@ -67,7 +67,7 @@ ARCH         =ubuntu
 # - HPL Directory Structure / HPL library ------------------------------
 # ----------------------------------------------------------------------
 #
-TOPdir       :=$(realpath $(CURDIR)/../../../)
+# TOPdir       :=$(realpath $(CURDIR)/../../../)
 INCdir       = $(TOPdir)/include
 BINdir       = $(TOPdir)/bin/$(ARCH)
 LIBdir       = $(TOPdir)/lib/$(ARCH)

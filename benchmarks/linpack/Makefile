@@ -48,6 +48,7 @@
 SHELL            = /bin/sh
 #
 arch             = UNKNOWN
+# TOPdir           =/foo/bar/
 #
 ## Targets #############################################################
 #
