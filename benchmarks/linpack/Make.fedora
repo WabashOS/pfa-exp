@@ -67,7 +67,7 @@ ARCH         = fedora
 # - HPL Directory Structure / HPL library ------------------------------
 # ----------------------------------------------------------------------
 #
-TOPdir       =/root/pfa-exp/benchmarks/linpack
+TOPdir       :=$(realpath $(CURDIR)/../../../)
 INCdir       = $(TOPdir)/include
 BINdir       = $(TOPdir)/bin/$(ARCH)
 LIBdir       = $(TOPdir)/lib/$(ARCH)
