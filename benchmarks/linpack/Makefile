@@ -88,3 +88,6 @@ clean_guard      :
 	$(MAKE) -f Make.top clean_guard_tst arch=$(arch)
 #
 # ######################################################################
+
+print-%  : 
+	$(MAKE) -f Make.top print-$* arch=$(arch)

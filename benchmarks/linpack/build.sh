@@ -5,9 +5,9 @@
 
 if [ `uname -m` == riscv64 ]
 then
-	make arch=fedora
+	make arch=fedora -j1
 	cp ./bin/fedora/xhpl ./bin/
 else
-	make arch=ubuntu
+	make arch=ubuntu -j1
 	cp ./bin/ubuntu/xhpl ./bin/
 fi
