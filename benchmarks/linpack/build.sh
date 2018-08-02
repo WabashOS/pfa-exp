@@ -1,13 +1,22 @@
 #!/bin/bash
 # Make this portable between platforms
 # this package doesn't support parallel build
-# Also /requires/ a fully qualified path in Make.fedora/ubuntu!
+# Due to a shockingly convoluted build system, the TOPdir can not be determined
+# from within the makefile, so we have to define it out here.
 
-if [ `uname -m` == riscv64 ]
+. /etc/os-release
+if [ $ID == 'centos' ];
 then
-  TOPdir=/data/repos/pfa-fedora/pfa-exp/benchmarks/linpack make arch=fedora -j1
+  TOPdir=${PWD} make arch=centos -j1
+  cp ./bin/centos/xhpl ./bin/
+elif [ $ID == 'fedora' ];
+then
+  TOPdir=${PWD} make arch=fedora -j1
 	cp ./bin/fedora/xhpl ./bin/
+elif [ $ID == 'ubuntu' ];
+then
+  TOPdir=${PWD} make arch=ubuntu -j1
+	cp ./bin/ubuntu/xhpl ./bin/
 else
-  TOPdir=/data/repos/pfa-fedora/pfa-exp/benchmarks/linpack make arch=ubuntu -j1
-	# cp ./bin/ubuntu/xhpl ./bin/
+  echo "Unrecognized distro: $ID"
 fi
