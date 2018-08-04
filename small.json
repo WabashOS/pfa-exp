@@ -22,7 +22,7 @@
         ],
         33726464
     ],
-    "xhpl": [
+    "linpack": [
         [
             "./benchmarks/linpack/bin/xhpl",
             "./benchmarks/linpack/small.dat"
