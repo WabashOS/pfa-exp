@@ -90,14 +90,19 @@ def handleRunSte(args, exp, benchmarks):
         command = desc[0]
         baseSz = desc[1]
         for scale in scale_factors:
-            runStart = time.time()
-            sz = int(baseSz*scale)
-            print("Running " + bench + " at scale-factor: " + str(scale))
-            exp.cgReset(sz)
-            stat = exp.runTest(command)
-            runTime = time.time() - runStart
-            results.append([exp.datetime, exp.name, bench, " ".join(command), sz] + list(stat.values())) 
-            print("Took " + str(runTime) + " seconds")
+            try:
+                runStart = time.time()
+                sz = int(baseSz*scale)
+                print("Running " + bench + " at scale-factor: " + str(scale))
+                exp.cgReset(sz)
+                stat = exp.runTest(command)
+                runTime = time.time() - runStart
+                results.append([exp.datetime, exp.name, bench, " ".join(command), sz] + list(stat.values())) 
+                print("Took " + str(runTime) + " seconds")
+            except:
+                print("Benchmark Crashed: " + str(sys.exc_info()[0]))
+                print("Skipping")
+                break
 
     if os.path.exists(resPath):
         with open(resPath, 'a', newline='') as resFile:
