@@ -61,13 +61,14 @@ TOUCH        = touch
 # - Platform identifier ------------------------------------------------
 # ----------------------------------------------------------------------
 #
-ARCH         = fedora
+ARCH         =centos
 #
 # ----------------------------------------------------------------------
 # - HPL Directory Structure / HPL library ------------------------------
 # ----------------------------------------------------------------------
 #
-# TOPdir       :=$(realpath $(CURDIR)/../../../)
+# Note: TOPdir is defined outside the make system becuase this build system is
+# extremely brittle and mangles the path if it's relative.
 INCdir       = $(TOPdir)/include
 BINdir       = $(TOPdir)/bin/$(ARCH)
 LIBdir       = $(TOPdir)/lib/$(ARCH)
@@ -84,8 +85,8 @@ HPLlib       = $(LIBdir)/libhpl.a
 # MPdir        = /usr/local/mpi
 # MPinc        = -I$(MPdir)/include
 # MPlib        = $(MPdir)/lib/libmpich.a
-MPinc   = -I/usr/include/mpich-riscv64/
-MPlib   = /lib64/mpich/lib/libmpich.so -lpthread
+MPinc   = -I/usr/include/mpich-x86_64
+MPlib   = /usr/lib64/mpich/lib/libmpich.so -lpthread
 
 #
 # ----------------------------------------------------------------------
@@ -98,8 +99,7 @@ MPlib   = /lib64/mpich/lib/libmpich.so -lpthread
 # LAdir        = $(HOME)/netlib/ARCHIVES/Linux_ATHLON
 # LAinc        =
 # LAlib        = $(LAdir)/libcblas.a $(LAdir)/libatlas.a
-#LAlib = /lib64/libcblas.so.3 
-LAlib = /opt/OpenBLAS/lib/libopenblas.a 
+LAlib = /lib64/libopenblas.so.0 
 #
 # ----------------------------------------------------------------------
 # - F77 / C interface --------------------------------------------------
@@ -171,7 +171,6 @@ HPL_DEFS     = $(F2CDEFS) $(HPL_OPTS) $(HPL_INCLUDES)
 # - Compilers / linkers - Optimization flags ---------------------------
 # ----------------------------------------------------------------------
 #
-# CC           = /usr/bin/gcc
 CC           = gcc 
 CCNOOPT      = $(HPL_DEFS)
 CCFLAGS      = $(HPL_DEFS) -fomit-frame-pointer -O3 -funroll-loops -W -Wall

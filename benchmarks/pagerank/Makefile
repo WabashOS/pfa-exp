@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-O2 -Wall
+CFLAGS=-O2 -Wall -std=gnu99
 
 pagerank: pagerank.c pagerank.h util.h pagerank.h barrier.h
 	$(CC) $(CFLAGS) -o $@ $<

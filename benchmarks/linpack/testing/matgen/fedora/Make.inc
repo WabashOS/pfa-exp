@@ -1,1 +1,0 @@
-/root/pfa-exp/benchmarks/linpack/Make.fedora

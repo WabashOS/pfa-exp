@@ -67,7 +67,7 @@ ARCH         =ubuntu
 # - HPL Directory Structure / HPL library ------------------------------
 # ----------------------------------------------------------------------
 #
-TOPdir       =/data/repos/fedora-image/pfa-exp/benchmarks/linpack
+# TOPdir       :=$(realpath $(CURDIR)/../../../)
 INCdir       = $(TOPdir)/include
 BINdir       = $(TOPdir)/bin/$(ARCH)
 LIBdir       = $(TOPdir)/lib/$(ARCH)

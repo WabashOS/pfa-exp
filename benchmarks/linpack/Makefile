@@ -48,6 +48,7 @@
 SHELL            = /bin/sh
 #
 arch             = UNKNOWN
+# TOPdir           =/foo/bar/
 #
 ## Targets #############################################################
 #
@@ -88,3 +89,6 @@ clean_guard      :
 	$(MAKE) -f Make.top clean_guard_tst arch=$(arch)
 #
 # ######################################################################
+
+print-%  : 
+	$(MAKE) -f Make.top print-$* arch=$(arch)

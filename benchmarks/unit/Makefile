@@ -1,5 +1,5 @@
 CC := gcc
-CFLAGS := -O3
+CFLAGS := -O3 -std=gnu99
 # CFLAGS := -O0 -g
 
 # CC := riscv64-unknown-linux-gnu-gcc
