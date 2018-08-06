@@ -11,7 +11,7 @@
             "python",
             "./benchmarks/python/bm_spambayes.py"
         ],
-        10608640
+        10612736
     ],
     "pagerank": [
         [
@@ -22,11 +22,18 @@
         ],
         33726464
     ],
-    "xhpl": [
+    "linpack": [
         [
             "./benchmarks/linpack/bin/xhpl",
             "./benchmarks/linpack/small.dat"
         ],
         6770688
+    ],
+    "genome": [
+        [
+            "./benchmarks/genome/assemble",
+            "./benchmarks/genome/little.dat"
+        ],
+        63426560
     ]
 }
