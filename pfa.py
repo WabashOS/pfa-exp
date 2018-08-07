@@ -12,7 +12,8 @@ class PfaState:
         s.name = name
         s.datetime = datetime.datetime.now().strftime("%m%d%H%M")
         s.pfacg_path = "pfa/pfatst"
-        s.pfacg_config = "memory,cpuset:" + s.pfacg_path
+        #s.pfacg_config = "memory,cpuset:" + s.pfacg_path
+        s.pfacg_config = "memory:" + s.pfacg_path
 
         # Sets whether or not to print the outputs of subcommands.
         if verbose:
@@ -23,11 +24,11 @@ class PfaState:
         # We assume the system has setup the parent cgroup ('pfa') with the desired
         # cpuset parameters. Grab them here so we can set them in the testing cgroup
         # ('pfatst')
-        ret = sp.run(['cgget', '-vnr', 'cpuset.cpus', 'pfa'], stdout=sp.PIPE, check=True)
-        s.cg_cpus = int(ret.stdout)
+        # ret = sp.run(['cgget', '-vnr', 'cpuset.cpus', 'pfa'], stdout=sp.PIPE, check=True)
+        # s.cg_cpus = int(ret.stdout)
 
-        ret = sp.run(['cgget', '-vnr', 'cpuset.mems', 'pfa'], stdout=sp.PIPE, check=True)
-        s.cg_mems = int(ret.stdout)
+        # ret = sp.run(['cgget', '-vnr', 'cpuset.mems', 'pfa'], stdout=sp.PIPE, check=True)
+        # s.cg_mems = int(ret.stdout)
 
         # The sysfs for pfa_stat is set up to support building csv's with scripts
         # pfa_stat_label holds the headers for this csv
@@ -37,8 +38,8 @@ class PfaState:
     def cgReset(s, sz):
         s.cgDelete()
         sp.run(['cgcreate', "-g", s.pfacg_config], check=True)
-        sp.run(['cgset', '-r', 'cpuset.cpus=' + str(s.cg_cpus), s.pfacg_path], check=True)
-        sp.run(['cgset', '-r', 'cpuset.mems=' + str(s.cg_mems), s.pfacg_path], check=True)
+        # sp.run(['cgset', '-r', 'cpuset.cpus=' + str(s.cg_cpus), s.pfacg_path], check=True)
+        # sp.run(['cgset', '-r', 'cpuset.mems=' + str(s.cg_mems), s.pfacg_path], check=True)
         s.cgSetMem(sz)
 
     def cgDelete(s):
