@@ -1,0 +1,18 @@
+{
+    "pagerank": [
+        [
+            "./benchmarks/pagerank/pagerank",
+            "-n",
+            "2048",
+            "./benchmarks/pagerank/pagerank-data-2048.bin"
+        ],
+        33726464
+    ],
+    "genome": [
+        [
+            "./benchmarks/genome/assemble",
+            "./benchmarks/genome/little.dat"
+        ],
+        63426560
+    ]
+}

@@ -177,8 +177,10 @@ int main(int argc, char *argv[])
 	printf("iterations = %d\n", iters);
 	printf("nanos = %ld\n", nanos);
 
-	munmap(fmem, n * (n + 1) * sizeof(double));
-	munmap(ranks, 2 * n * sizeof(double));
+	/* munmap(fmem, n * (n + 1) * sizeof(double)); */
+  free(fmem);
+	/* munmap(ranks, 2 * n * sizeof(double)); */
+  free(ranks);
 
 	return 0;
 }
