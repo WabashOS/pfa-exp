@@ -19,11 +19,4 @@ static inline void mb(void) {
 #endif
 }
 
-static void *mmap_alloc(size_t length)
-{
-	// return mmap(NULL, length, PROT_READ|PROT_WRITE,
-	// 		MAP_SHARED|MAP_ANONYMOUS, -1, 0);
-  return malloc(length);
-}
-
 #endif

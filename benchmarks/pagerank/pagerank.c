@@ -10,7 +10,6 @@
 
 #include "pagerank.h"
 #include "util.h"
-#include "barrier.h"
 
 #define COL_GROUP 512
 #define ROW_GROUP 16
@@ -142,26 +141,17 @@ int main(int argc, char *argv[])
 	pr_matrix = (double *) fmem;
 	expected  = (double *) (fmem + n * n * sizeof(double));
 
-	ranks = mmap_alloc(2 * n * sizeof(double));
-	if (ranks == MAP_FAILED) {
-		perror("mmap() ranks");
+	/* ranks = mmap_alloc(2 * n * sizeof(double)); */
+	ranks = malloc(2 * n * sizeof(double));
+	if (ranks == NULL) {
+		perror("malloc() ranks");
 		exit(EXIT_FAILURE);
 	}
 
 	for (int i = 0; i < 2 * n; i++)
 		ranks[i] = 1.0 / n;
 
-	// Fault the matrix into memory
-	/* for (int i = 0; i < n * n; i += pgdoubles) { */
-	/* 	if (mlock(&pr_matrix[i], pgsize)) { */
-	/* 		fprintf(stderr, "Could not lock page %d\n", i / pgdoubles); */
-	/* 		perror("mlock()"); */
-	/* 		exit(EXIT_FAILURE); */
-	/* 	} */
-	/* 	munlock(&pr_matrix[i], pgsize); */
-	/* } */
-
-	mb();
+  mb();
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	iters = pagerank(iomem, pr_matrix, ranks, rankpaddr, n, err);
 	mb();
