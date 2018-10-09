@@ -52,7 +52,7 @@ SHELL        = /bin/sh
 #
 CD           = cd
 CP           = cp
-LN_S         = ln -s
+LN_S         = ln -s 
 MKDIR        = mkdir
 RM           = /bin/rm -f
 TOUCH        = touch
@@ -84,8 +84,8 @@ HPLlib       = $(LIBdir)/libhpl.a
 # MPdir        = /usr/local/mpi
 # MPinc        = -I$(MPdir)/include
 # MPlib        = $(MPdir)/lib/libmpich.a
-MPinc   = -I/usr/include/mpich-riscv64/
-MPlib   = /lib64/mpich/lib/libmpich.so -lpthread
+MPinc   = -I/usr/include/mpich-riscv64/ 
+MPlib   = /lib64/mpich/lib/libmpi.so -lpthread -Wl,-rpath=/lib64/mpich/lib/ -L/lib64/mpich/lib/
 
 #
 # ----------------------------------------------------------------------

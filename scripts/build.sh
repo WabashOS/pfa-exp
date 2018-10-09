@@ -13,7 +13,6 @@ make
 popd
 
 pushd pagerank
-make clean
 make
 popd
 
