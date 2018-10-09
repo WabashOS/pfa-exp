@@ -96,10 +96,8 @@ MPlib   = /lib64/mpich/lib/libmpich.so -lpthread
 # used. The variable LAdir is only used for defining LAinc and LAlib.
 #
 # LAdir        = $(HOME)/netlib/ARCHIVES/Linux_ATHLON
-# LAinc        =
-# LAlib        = $(LAdir)/libcblas.a $(LAdir)/libatlas.a
-#LAlib = /lib64/libcblas.so.3 
-LAlib = /opt/OpenBLAS/lib/libopenblas.a 
+LAinc        = -I/usr/include/openblas/
+LAlib = /usr/lib64/libopenblas64.so
 #
 # ----------------------------------------------------------------------
 # - F77 / C interface --------------------------------------------------
