@@ -1,0 +1,6 @@
+{
+  "name" : "pfa-exp",
+  "base" : "fedora-base.json",
+  "overlay" : "overlay",
+  "guest-init" : "fedora_bootstrap.sh"
+}

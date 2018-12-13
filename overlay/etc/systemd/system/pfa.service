@@ -3,7 +3,7 @@ Description=PFA related initialization (e.g. setting up swap)
 
 [Service]
 Type=oneshot
-ExecStart=/root/pfa-exp/scripts/fedora_init.sh
+ExecStart=/root/fedora_init.sh
 
 [Install]
 WantedBy=default.target

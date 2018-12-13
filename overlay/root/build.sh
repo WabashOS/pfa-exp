@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ../benchmarks
+pushd benchmarks/
 
 pushd qsort
 make clean
