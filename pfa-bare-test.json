@@ -1,0 +1,11 @@
+{
+  "name" : "pfa-bare-test",
+  "workdir" : "pfa-exp",
+  "base" : "bare",
+  "host-init" : "build.sh",
+  "bin" : "pfa-bare-test/build/pk",
+  "spike" : "spike-install/bin/spike",
+  "testing" : {
+    "refDir" : "pfa-bare-refOutput"
+  }
+}

@@ -1,0 +1,9 @@
+[submodule "riscv-linux"]
+	path = riscv-linux
+	url = git@github.com:WabashOS/riscv-linux.git
+[submodule "riscv-isa-sim"]
+	path = riscv-isa-sim
+	url = git@github.com:WabashOS/riscv-isa-sim.git
+[submodule "pfa-bare-test"]
+	path = pfa-bare-test
+	url = git@github.com:WabashOS/riscv-pk.git
