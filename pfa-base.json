@@ -1,0 +1,10 @@
+{
+  "name" : "pfa-base",
+  "workdir" : "pfa-exp",
+  "base" : "fedora-base.json",
+  "overlay" : "overlay",
+  "guest-init" : "fedora_bootstrap.sh",
+  "linux-config" : "linux-config",
+  "linux-src" : "riscv-linux",
+  "spike" : "spike-install/bin/spike"
+}

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-pushd benchmarks/
-
 pushd qsort
 make clean
 make
@@ -19,6 +17,3 @@ popd
 pushd linpack 
 ./build.sh
 popd
-
-popd
-
