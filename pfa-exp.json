@@ -1,7 +1,0 @@
-{
-  "name" : "pfa-exp",
-  "base" : "pfa-base.json",
-  "overlay" : "overlay",
-  "linux-src" : "riscv-linux",
-  "spike" : "spike-install/bin/spike"
-}

@@ -21,6 +21,6 @@ fi
 
 echo "building benchmarks"
 cd /root/benchmarks
-build.sh
+build-nat.sh
 
 poweroff

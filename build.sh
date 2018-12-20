@@ -30,3 +30,11 @@ fi
 pushd pfa-bare-test/build
 make -j16
 popd
+
+pushd benchmarks
+./build-cross.sh
+popd
+
+pushd br-overlay/root/util/
+make
+popd

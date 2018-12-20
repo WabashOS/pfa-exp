@@ -1,0 +1,8 @@
+{
+  "name" : "pfa-small",
+  "workdir" : "pfa-exp",
+  "base" : "pfa-base.json",
+  "command" : "cd /root/; ./main.py -n small -b small.json runsuite",
+  "outputs" : [ "/root/results_small.csv" ],
+  "linux-src" : "riscv-linux"
+}

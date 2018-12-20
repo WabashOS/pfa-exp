@@ -1,0 +1,11 @@
+{
+  "name" : "pfa-br",
+  "workdir" : "pfa-exp",
+  "base" : "br-base.json",
+  "overlay" : "br-overlay",
+  "files" : [ ["benchmarks", "/root/"] ],
+  "host-init" : "build.sh",
+  "linux-config" : "linux-configs/br",
+  "linux-src" : "riscv-linux",
+  "spike" : "spike-install/bin/spike"
+}

@@ -1,0 +1,7 @@
+{
+  "name" : "pfa-spike",
+  "workdir" : "pfa-exp",
+  "base" : "pfa-base.json",
+  "linux-src" : "riscv-linux",
+  "linux-config" : "linux-configs/spike-pfa"
+}

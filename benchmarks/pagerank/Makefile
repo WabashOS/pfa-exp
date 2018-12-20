@@ -1,5 +1,10 @@
-CC=gcc
-CFLAGS=-O2 -Wall -std=gnu99
+ifeq ($(CROSS), riscv)
+CC = riscv64-unknown-linux-gnu-gcc
+CFLAGS := -O3 -static -DRISCV
+else
+CC = gcc
+CFLAGS := -O3 -std=gnu99
+endif
 
 all: pagerank data
 
