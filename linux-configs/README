@@ -1,7 +1,12 @@
 This is a collection of standard PFA configurations for various tests.
 
+# Basic Configs
+fed, br
+These are good starting points for saving particular configurations.
+
 # Full benchmark runs:
- The naming scheme is {platform}-{pfa configuration}.
+These are saved configs for particular experiments. The naming scheme is
+{platform}-{pfa configuration}.
 
 ## Platforms:
 * em: Emulates all hardware, can run on qemu or vanilla firesim. 

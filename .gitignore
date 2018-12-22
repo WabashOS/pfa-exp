@@ -4,7 +4,7 @@ spike-install
 *.swp
 
 # Prerequisites
-*.d
+# *.d
 
 # Object files
 *.o
