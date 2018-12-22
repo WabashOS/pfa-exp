@@ -3,9 +3,18 @@
   "workdir" : "pfa-exp",
   "base" : "bare",
   "host-init" : "build.sh",
-  "bin" : "pfa-bare-test/build/pk",
   "spike" : "spike-install/bin/spike",
+  "jobs" : [
+    {
+      "name" : "client",
+      "bin" : "pfa-bare-test/build/pk"
+    },
+    {
+      "name" : "memblade",
+      "base" : "dummy.json"
+    }
+  ],
   "testing" : {
-    "refDir" : "pfa-bare-refOutput"
+    "refDir" : "refOutputs/pfa-bare"
   }
 }

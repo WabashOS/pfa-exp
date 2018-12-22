@@ -1,8 +1,8 @@
 524288
 rest_of_boot_loader
 Initializing PFA
-Getting MAC from NIC for loopback config
-setting mac in PFA
+Getting MAC from NIC
+setting mac in PFA to: 1099511627776
 test_one: Don't Flush TLB
 page[10]=42
 test_one success
@@ -36,7 +36,7 @@ test_max Success!
 test_inval
 Trap: 15
 array size: 16
-handler: 0x00000000800033dc
+handler: 0x00000000800033ec
 handle_page_fault, pte=000000002001c4ce vaddr=0x0000000080071000
 Saw page fault on test_inval special addr
 test_inval success
@@ -52,7 +52,7 @@ Test_32
 pages[0] = 0x0000000080077000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000004e33e vaddr=0x0000000080077000
 handle_page_fault: pte is remote: freeframes=64, newpages=0
 pages[1] = 0x0000000080078000
@@ -123,7 +123,7 @@ pages[31] = 0x00000000800f7000
 pages[32] = 0x00000000800f8000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000008e33e vaddr=0x00000000800f8000
 handle_page_fault: pte is remote: freeframes=64, newpages=32
 pages[33] = 0x00000000800f9000
@@ -192,7 +192,7 @@ pages[95] = 0x0000000080137000
 pages[96] = 0x0000000080138000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=00000000000ce33e vaddr=0x0000000080138000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[97] = 0x0000000080139000
@@ -261,7 +261,7 @@ pages[159] = 0x0000000080177000
 pages[160] = 0x0000000080178000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000010e33e vaddr=0x0000000080178000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[161] = 0x0000000080179000
@@ -330,7 +330,7 @@ pages[223] = 0x00000000801b7000
 pages[224] = 0x00000000801b8000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000014e33e vaddr=0x00000000801b8000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[225] = 0x00000000801b9000
@@ -399,7 +399,7 @@ pages[287] = 0x00000000801f7000
 pages[288] = 0x00000000801f8000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000018e33e vaddr=0x00000000801f8000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[289] = 0x00000000801f9000
@@ -468,7 +468,7 @@ pages[351] = 0x0000000080237000
 pages[352] = 0x0000000080238000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=00000000001ce33e vaddr=0x0000000080238000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[353] = 0x0000000080239000
@@ -537,7 +537,7 @@ pages[415] = 0x0000000080277000
 pages[416] = 0x0000000080278000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000020e33e vaddr=0x0000000080278000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[417] = 0x0000000080279000
@@ -606,7 +606,7 @@ pages[479] = 0x00000000802b7000
 pages[480] = 0x00000000802b8000
 Trap: 13
 array size: 16
-handler: 0x0000000080003420
+handler: 0x0000000080003430
 handle_page_fault, pte=000000000024e33e vaddr=0x00000000802b8000
 handle_page_fault: pte is remote: freeframes=64, newpages=64
 pages[481] = 0x00000000802b9000
@@ -643,6 +643,6 @@ pages[511] = 0x00000000802d7000
 Test_512 Success
 Test Success!
 159600 ticks
-15382061 cycles
-15382062 instructions
+15382060 cycles
+15382061 instructions
 0.90 CPI

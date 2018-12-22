@@ -1,0 +1,13 @@
+{
+  "name" : "pfa-manual",
+  "jobs" : [
+    {
+      "name" : "client",
+      "base" : "pfa-br.json"
+    },
+    {
+      "name" : "dummy",
+      "base" : "dummy.json"
+    }
+  ]
+}
