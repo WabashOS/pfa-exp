@@ -1,5 +1,5 @@
 {
-  "name" : "pfa-base",
+  "name" : "pfa-fed",
   "workdir" : "pfa-exp",
   "base" : "fedora-base.json",
   "overlay" : "fed-overlay",

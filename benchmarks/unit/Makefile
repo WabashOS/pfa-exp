@@ -1,6 +1,7 @@
 ifeq ($(CROSS), riscv)
 CC = riscv64-unknown-linux-gnu-gcc
-CFLAGS := -O3 -static -DRISCV
+# CFLAGS := -O3 -static -DRISCV
+CFLAGS := -O0 -g -static -DRISCV
 else
 CC = gcc
 CFLAGS := -O3 -std=gnu99

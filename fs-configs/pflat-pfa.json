@@ -1,0 +1,19 @@
+{
+  "name" : "pflat-pfa",
+  "post_run_hook" : "resScripts/pflat_res.py",
+  "workdir" : "pfa-exp",
+  "testing" : {
+    "refDir" : "refOutputs/pflat"
+  },
+  "jobs" : [
+    {
+      "name" : "client",
+      "base" : "pfa-br.json",
+      "linux-config" : "linux-configs/pflat-pfa"
+    },
+    {
+      "name" : "memblade",
+      "base" : "dummy.json"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ uint64_t big_rand(void)
 int start_pflat(void)
 {
   /* Reset the pf latency system in the kernel */
+  printf("Registering task\n");
   FILE *lat_file = fopen("/sys/kernel/mm/pfa_pflat", "w");
   if(!lat_file) {
     printf("Failed to open pfa_pflat sysfs file\n");
@@ -40,9 +41,10 @@ int time_fault(void)
   FILE *lat_file;
  
   /* Get the vaddr of an evicted page from the kernel. */
+  printf("Reading vaddr\n");
   lat_file = fopen("/sys/kernel/mm/pfa_pflat", "r");
   if(!lat_file) {
-    printf("Failed to open pfa_pflat sysfs file\n");
+    printf("Failed to open pfa_pflat sysfs file (to read vaddr)\n");
     return 0;
   }
   sz = fscanf(lat_file, "0x%lx\n", &vaddr);
@@ -54,6 +56,9 @@ int time_fault(void)
   }
   printf("Gonna probe vaddr: 0x%"PRIx64"\n", vaddr);
 
+  /* Might race with eviction */
+  sleep(1);
+
   /* Fault on the vaddr */
   int64_t start = get_cycle();
   val = *(volatile uint64_t *)vaddr;
@@ -61,9 +66,26 @@ int time_fault(void)
 
   /* Read the start time of the handler from the kernel (this will give us the
    * trap latency) */
+
+  printf("Reading pf start time\n");
   lat_file = fopen("/sys/kernel/mm/pfa_pflat", "r");
+  if(!lat_file) {
+    printf("Failed to open pfa_pflat sysfs file (to read start time)\n");
+    return 0;
+  }
+
   sz = fscanf(lat_file, "%ld\n", &pf_start_time);
+  if(sz == 0) {
+    printf("Failed to read page fault start time\n");
+    return 0;
+  } else if(pf_start_time < start) {
+    printf("WARNING: Page fault start time unreasonable:\n");
+    printf("\tfault initiated: %ld\n", start);
+    printf("\tfault entered:   %ld\n", pf_start_time);
+    printf("\tfault e2e: %ld\n", end - start);
+  }
   fclose(lat_file);
+
   printf("Trap started at: %ld\n", pf_start_time);
 
   printf("Faulted once: \n");

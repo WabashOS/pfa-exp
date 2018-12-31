@@ -1,12 +1,14 @@
 {
   "name" : "pfa-manual",
+  "workdir" : "pfa-exp",
   "jobs" : [
     {
       "name" : "client",
-      "base" : "pfa-br.json"
+      "base" : "pfa-fed.json",
+      "linux-config" : "linux-configs/em-pfa"
     },
     {
-      "name" : "dummy",
+      "name" : "memblade",
       "base" : "dummy.json"
     }
   ]
