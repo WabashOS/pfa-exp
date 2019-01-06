@@ -1,0 +1,42 @@
+{
+  "name" : "pfa-manual",
+  "workdir" : "pfa-exp",
+  "jobs" : [
+  {
+    "name" : "client0",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-pfa"
+  },
+  {
+    "name" : "memblade0",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "client1",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-pfa"
+  },
+  {
+    "name" : "memblade1",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "client2",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-pfa"
+  },
+  {
+    "name" : "memblade2",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "client3",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-pfa"
+  },
+  {
+    "name" : "memblade3",
+    "base" : "dummy.json"
+  }
+  ]
+}

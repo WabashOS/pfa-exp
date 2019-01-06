@@ -4,16 +4,19 @@ import sys
 import argparse
 import json
 import datetime
+from pathlib import Path
 from collections import OrderedDict
+import humanfriendly as hf
+
+cgTest = Path('/sys/fs/cgroup/unified/pfa')
+cgMemLimit = cgTest / 'memory.max'
+cgProc = cgTest / 'cgroup.procs'
 
 # This contains a bunch of global and state values used by various functions
 class PfaState:
     def __init__(s, name, verbose=False):
         s.name = name
         s.datetime = datetime.datetime.now().strftime("%m%d%H%M")
-        s.pfacg_path = "pfa/pfatst"
-        #s.pfacg_config = "memory,cpuset:" + s.pfacg_path
-        s.pfacg_config = "memory:" + s.pfacg_path
 
         # Sets whether or not to print the outputs of subcommands.
         if verbose:
@@ -36,33 +39,18 @@ class PfaState:
             s.pfa_stat_lbl = lbl_file.read().strip().split(',')
 
     def cgReset(s, sz):
-        s.cgDelete()
-        sp.run(['cgcreate', "-g", s.pfacg_config], check=True)
-        # sp.run(['cgset', '-r', 'cpuset.cpus=' + str(s.cg_cpus), s.pfacg_path], check=True)
-        # sp.run(['cgset', '-r', 'cpuset.mems=' + str(s.cg_mems), s.pfacg_path], check=True)
-        s.cgSetMem(sz)
-
-    def cgDelete(s):
-        sp.run(['cgdelete', s.pfacg_config], stdout=s.subcmd_print, stderr=sp.DEVNULL)
-
-    def cgSetMem(s, sz):
+        # Cgroups can be lazy about resource accounting. If we didn't
+        # delete/re-create, the next run might get charged for previous runs
+        # memory.
+        cgTest.rmdir()
+        cgTest.mkdir()       
+        
         sz = int(sz)
         if sz < 4096 and sz != -1:
             sz = 4096
         
-        sp.run(['cgset', '-r', 'memory.limit_in_bytes=' + str(sz), s.pfacg_path], check=True)
-
-        # cgset seems to return SUCCESS, even if it failed, the only way to check
-        # is to see if the parameter was set correctly. Note that the memory limit
-        # always rounds down to the nearest multiple of a page size.
-        ret = sp.run(['cgget', '-vnr', 'memory.limit_in_bytes', s.pfacg_path], stdout=sp.PIPE, check=True)
-        npage_got = int(int(ret.stdout) / 4096)
-        npage_req = int(sz / 4096)
-        if(npage_got != npage_req and sz != -1):
-            print("Failed to set cgroup value: expected: " + str(npage_req*4096) + " got: " + str(npage_got*4096))
-            return False
-
-        return True
+        with open(cgMemLimit, 'w') as cgF:
+            cgF.write(str(sz))
 
     def cgGetStat(s):
         stats = {}
@@ -78,13 +66,14 @@ class PfaState:
         pid = os.getpid()
         
         # Add to cgroup
-        sp.run(['cgclassify', '-g', s.pfacg_config, str(pid)], check=True, stdout=s.subcmd_print)
+        # sp.run(['cgclassify', '-g', s.pfacg_config, str(pid)], check=True, stdout=s.subcmd_print)
+        with open(cgProc, 'w') as procF:
+            procF.write(str(pid))
 
         # Add to pfa_stat
         with open('/sys/kernel/mm/pfa_stat', 'w') as stat_file:
             stat_file.write(str(pid))
 
-        # XXX This hasn't been tested because fedora doesn't work on spike
         if(os.path.isfile('/sys/kernel/mm/pfa_tsk')):
             with open('/sys/kernel/mm/pfa_tsk', 'w') as pfa_file:
                 pfa_file.write(str(pid))
@@ -145,3 +134,26 @@ class PfaState:
 
         print("Found working set size (" + str(sz) + " pages), took " + str(niter) + " iterations");
         return sz*pgsz
+
+# Run a simple unit test
+# ./pfa.py SZ BENCH [ARGS]
+if __name__ == '__main__':
+    sz = hf.parse_size(sys.argv[1])
+    bench = sys.argv[2:]
+
+    p = PfaState("test", verbose=True)
+    p.cgReset(sz)
+    stats = p.runTest(bench)
+    print("Test Complete:")
+    print(p.pfa_stat_lbl)
+    print(stats)
+    with open("test_res.csv", 'w') as resF:
+        resF.write(','.join(p.pfa_stat_lbl) + "\n")
+        first = True
+        for v in stats.values():
+            if first:
+                resF.write(str(v))
+                first = False
+            else:
+                resF.write(',' + str(v))
+        resF.write("\n")

@@ -1,5 +1,5 @@
 {
-  "name" : "pflat-pfa",
+  "name" : "pflat-real-mb",
   "post_run_hook" : "resScripts/pflat_res.py",
   "workdir" : "pfa-exp",
   "testing" : {
@@ -9,7 +9,8 @@
     {
       "name" : "client",
       "base" : "pfa-br.json",
-      "linux-config" : "linux-configs/pflat-pfa"
+      "linux-config" : "linux-configs/pflat-real-mb",
+      "command" : "cd /root; ./pflat.sh"
     },
     {
       "name" : "memblade",

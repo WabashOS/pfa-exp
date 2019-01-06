@@ -14,7 +14,8 @@ if [ ! -e /PFA_INIT ]; then
     python-numpy
 
   pip install \
-    spambayes
+    spambayes \
+    humanfriendly
 
   echo "PFA packages installed" > /PFA_INIT
 fi

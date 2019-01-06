@@ -1,7 +1,7 @@
 #!/bin/sh
-
-echo $$ > /sys/fs/cgroup/pfa_cg/cgroup.procs
+echo $$ > /sys/fs/cgroup/pfa/cgroup.procs
 echo $$ > /sys/kernel/mm/pfa_stat
+taskset -p 0x2 $$
 
 if [ -f /sys/kernel/mm/pfa_tsk ]; then
   echo $$ > /sys/kernel/mm/pfa_tsk

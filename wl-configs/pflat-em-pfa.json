@@ -1,9 +1,9 @@
 {
-  "name" : "pflat-mb-em",
+  "name" : "pflat-em-pfa",
   "post_run_hook" : "resScripts/pflat_res.py",
   "workdir" : "pfa-exp",
   "base" : "pfa-br.json",
-  "linux-config" : "linux-configs/pflat-mb-em",
+  "linux-config" : "linux-configs/pflat-em-pfa",
   "command" : "cd /root; ./pflat.sh",
   "testing" : {
     "refDir" : "refOutputs/pflat"

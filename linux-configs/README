@@ -6,17 +6,20 @@ These are good starting points for saving particular configurations.
 
 # Full benchmark runs:
 These are saved configs for particular experiments. The naming scheme is
-{platform}-{pfa configuration}.
+{distro}-{platform}-{pfa configuration}.
+
+## Distros:
+* br: buildroot. Only contains a few basic benchmarks and manual tooling.
+* fed: Fedora. Contains full automated run scripts, benchmark suites, and statistic recording.
 
 ## Platforms:
 * em: Emulates all hardware, can run on qemu or vanilla firesim. 
-* spike: Uses loopback MAC for rmem blade
-* fs: Assumes node is running in slot 0, rmem blade is in slot 1
+* real: Uses real hw. Default configs assume client is in slot 0 and memory blade is in slot 1 (hard-coded MAC addresses).
 
 ## PFA Configurations:
-* base: Baseline, no PFA stuff enabled (frontswap to rmem through memblade client)
+* mb: Use memory blade directly. Baseline, no PFA stuff enabled (frontswap to rmem through memblade client)
 * pfa: Use swap via the PFA
 
 # One-Off Configs
-* testing: basic config to goof around with and use for temporary stuff
-* pflat: page-fault latency test
+* manual: basic config to goof around with and use for temporary stuff. Treat this kinda like a tmp.
+* pflat: page-fault latency test. These are buildroot-based.

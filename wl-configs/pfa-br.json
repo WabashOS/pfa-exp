@@ -1,12 +1,11 @@
 {
-  "name" : "pfa-fed",
+  "name" : "pfa-br",
   "workdir" : "pfa-exp",
-  "base" : "fedora-base.json",
-  "overlay" : "fed-overlay",
+  "base" : "br-base.json",
+  "overlay" : "br-overlay",
   "files" : [ ["benchmarks", "/root/"] ],
-  "guest-init" : "fedora_bootstrap.sh",
   "host-init" : "build.sh",
-  "linux-config" : "linux-configs/em-base",
+  "linux-config" : "linux-configs/br-em-pfa",
   "linux-src" : "riscv-linux",
   "spike" : "spike-install/bin/spike"
 }

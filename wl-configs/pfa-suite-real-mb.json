@@ -1,0 +1,47 @@
+{
+  "name" : "pfa-manual",
+  "workdir" : "pfa-exp",
+  "jobs" : [
+  {
+    "name" : "qsort",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-mb",
+    "outputs" : [ "/root/qsort_res.csv" ],
+    "command" : "cd root; ./runSuite.sh qsort.cfg"
+  },
+  {
+    "name" : "memblade0",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "genome",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-mb",
+    "outputs" : [ "/root/genome_res.csv" ],
+    "command" : "cd root; ./runSuite.sh genome.cfg"
+  },
+  {
+    "name" : "memblade1",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "pagerank",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-real-mb",
+    "outputs" : [ "/root/pagerank_res.csv" ],
+    "command" : "cd root; ./runSuite.sh pagerank.cfg"
+  },
+  {
+    "name" : "memblade2",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "blank6",
+    "base" : "dummy.json"
+  },
+  {
+    "name" : "blank7",
+    "base" : "dummy.json"
+  }
+  ]
+}
