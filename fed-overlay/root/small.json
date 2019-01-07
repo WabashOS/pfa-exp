@@ -4,7 +4,7 @@
             "./benchmarks/qsort/qsort",
             "10000000"
         ],
-        10121216
+        10351216 
     ],
     "python": [
         [

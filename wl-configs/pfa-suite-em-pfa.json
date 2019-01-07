@@ -1,12 +1,13 @@
 {
-  "name" : "pfa-suite-real-mb",
+  "name" : "pfa-suite-em-pfa",
   "workdir" : "pfa-exp",
+  "post_run_hook" : "resScripts/suite.py",
   "jobs" : [
   {
     "name" : "qsort",
     "base" : "pfa-br.json",
     "linux-config" : "linux-configs/br-em-pfa",
-    "outputs" : [ "/root/qsort_res.csv" ],
+    "outputs" : [ "/root/qsort_res.csv", "/root/config.gz" ],
     "command" : "cd root; ./runSuite.sh qsort.cfg"
   },
   {
@@ -17,7 +18,7 @@
     "name" : "genome",
     "base" : "pfa-br.json",
     "linux-config" : "linux-configs/br-em-pfa",
-    "outputs" : [ "/root/genome_res.csv" ],
+    "outputs" : [ "/root/assemble_res.csv", "/root/config.gz" ],
     "command" : "cd root; ./runSuite.sh genome.cfg"
   },
   {
@@ -28,7 +29,7 @@
     "name" : "pagerank",
     "base" : "pfa-br.json",
     "linux-config" : "linux-configs/br-em-pfa",
-    "outputs" : [ "/root/pagerank_res.csv" ],
+    "outputs" : [ "/root/pagerank_res.csv", "/root/config.gz" ],
     "command" : "cd root; ./runSuite.sh pagerank.cfg"
   },
   {
@@ -36,11 +37,13 @@
     "base" : "dummy.json"
   },
   {
-    "name" : "blank6",
-    "base" : "dummy.json"
+    "name" : "test",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-em-pfa",
+    "command" : "cd root; ./test.sh"
   },
   {
-    "name" : "blank7",
+    "name" : "memblade3",
     "base" : "dummy.json"
   }
   ]

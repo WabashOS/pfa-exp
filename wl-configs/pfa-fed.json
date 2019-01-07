@@ -6,7 +6,7 @@
   "files" : [ ["benchmarks", "/root/"] ],
   "guest-init" : "fedora_bootstrap.sh",
   "host-init" : "build.sh",
-  "linux-config" : "linux-configs/fed-em-mb",
+  "linux-config" : "linux-configs/fed-nw",
   "linux-src" : "riscv-linux",
   "spike" : "spike-install/bin/spike"
 }
