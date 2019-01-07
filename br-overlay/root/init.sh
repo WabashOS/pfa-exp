@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Handy to have this saved for reference later
+cp /proc/config.gz .
+
 cd /root/util/
 ./init_swap.sh
 ./init_cgrp.sh

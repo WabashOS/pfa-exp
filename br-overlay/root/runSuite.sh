@@ -3,9 +3,12 @@
 # ./runSuite.sh args.cfg
 # see qsort.cfg for an example of args.cfg
 
-source $1
+source $PWD/$1
+((m75 = (3*$workSz) / 4))
+((m50 = $workSz /2))
+((m25 = $workSz /4))
 
-RES_PATH=~/$(basename $CMD)_res.csv
+RES_PATH=/root/$(basename $CMD)_res.csv
 
 echo "Results in: $RES_PATH" 
 echo "Testing: $CMD $ARGS"

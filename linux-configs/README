@@ -1,5 +1,17 @@
 This is a collection of standard PFA configurations for various tests.
 
+# Usage
+Most of the configs in this directory are derived from patches. To change a
+basic option (nothing to do with the PFA), change one of the basic configs
+(e.g. br, fed). To create an experiment or PFA configuration, change a patch
+and run the applyPatches script in patches/.
+
+If you're just starting out, do:
+    cd patches/
+    ./patchCfg.py ../br *.patch
+    ./patchCfg.py ../fed *.patch
+
+
 # Basic Configs
 fed, br
 These are good starting points for saving particular configurations.

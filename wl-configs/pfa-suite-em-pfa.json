@@ -5,7 +5,7 @@
   {
     "name" : "qsort",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
+    "linux-config" : "linux-configs/br-em-pfa",
     "outputs" : [ "/root/qsort_res.csv" ],
     "command" : "cd root; ./runSuite.sh qsort.cfg"
   },
@@ -16,7 +16,7 @@
   {
     "name" : "genome",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
+    "linux-config" : "linux-configs/br-em-pfa",
     "outputs" : [ "/root/genome_res.csv" ],
     "command" : "cd root; ./runSuite.sh genome.cfg"
   },
@@ -27,7 +27,7 @@
   {
     "name" : "pagerank",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
+    "linux-config" : "linux-configs/br-em-pfa",
     "outputs" : [ "/root/pagerank_res.csv" ],
     "command" : "cd root; ./runSuite.sh pagerank.cfg"
   },
