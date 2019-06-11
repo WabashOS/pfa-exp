@@ -3,7 +3,7 @@
   "workdir" : "pfa-exp",
   "post_run_hook" : "resScripts/test.py",
   "testing" : {
-    "refDir" : "refOutputs/br-test"
+    "refDir" : "refOutputs/test"
   },
   "jobs" : [
   {

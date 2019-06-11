@@ -10,9 +10,9 @@ from pathlib import Path
 
 # csv doesn't use ordered dicts so we have to save this here to get a readable csv output
 csvHeader = ['Config', 'Benchmark', 'Args', 'MemFrac', 'MemSz', 'TotalRuntime', 't_run',
-        't_bookkeeping', 't_rmem_write', 't_rmem_read', 'n_fault', 't_fault',
+        't_bookkeeping', 't_rmem_write', 't_rmem_read', 'n_fault', 't_fault', 'n_fault_fetched',
         'n_swapfault', 'n_pfa_fault', 'n_early_newq', 'n_evicted', 'n_fetched',
-        'n_kpfad', 't_kpfad']
+        'n_kpfad', 'n_kpfad_fetched', 't_kpfad']
 
 # firesim output directory
 outBase = Path(sys.argv[1])

@@ -63,10 +63,10 @@ CONFIG_FRONTSWAP=y
 # PFA
 #
 CONFIG_PFA=y
-CONFIG_PFA_EM=y
-CONFIG_MEMBLADE_EM=y
-CONFIG_PFA_VERBOSE=n
-CONFIG_PFA_DEBUG=n
+CONFIG_PFA_EM=n
+CONFIG_MEMBLADE_EM=n
+CONFIG_PFA_VERBOSE=y
+CONFIG_PFA_DEBUG=y
 CONFIG_PFA_PFLAT=n
 CONFIG_PFA_KPFAD=y
 CONFIG_PFA_FREEQ_SIZE=64
@@ -1133,7 +1133,7 @@ CONFIG_NLS_DEFAULT="iso8859-1"
 # Kernel hacking
 #
 CONFIG_CMDLINE_BOOL=y
-CONFIG_CMDLINE="console=hvc0 root=/dev/generic-blkdev rw isolcpus=1 cgroup_no_v1=all"
+CONFIG_CMDLINE="console=hvc0 root=/dev/generic-blkdev rw isolcpus=1 maxcpus=2 cgroup_no_v1=all"
 # CONFIG_CMDLINE_OVERRIDE is not set
 CONFIG_EARLY_PRINTK=y
 

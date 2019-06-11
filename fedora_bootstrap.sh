@@ -13,9 +13,9 @@ if [ ! -e /PFA_INIT ]; then
     openblas-devel \
     python-numpy
 
-  pip install \
-    spambayes \
-    humanfriendly
+  pip install spambayes
+
+  pip3 install humanfriendly
 
   echo "PFA packages installed" > /PFA_INIT
 fi

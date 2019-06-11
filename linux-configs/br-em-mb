@@ -1133,7 +1133,7 @@ CONFIG_NLS_DEFAULT="iso8859-1"
 # Kernel hacking
 #
 CONFIG_CMDLINE_BOOL=y
-CONFIG_CMDLINE="console=hvc0 root=/dev/generic-blkdev rw isolcpus=1 cgroup_no_v1=all"
+CONFIG_CMDLINE="console=hvc0 root=/dev/generic-blkdev rw isolcpus=1 maxcpus=2 cgroup_no_v1=all"
 # CONFIG_CMDLINE_OVERRIDE is not set
 CONFIG_EARLY_PRINTK=y
 

@@ -12,7 +12,7 @@ RES_PATH=/root/$(basename $CMD)_res.csv
 
 echo "Results in: $RES_PATH" 
 echo "Testing: $CMD $ARGS"
-echo -n "Benchmark,Args,MemFrac,MemSz,TotalRuntime," | tee -a $RES_PATH
+echo -n "Benchmark,Args,MemFrac,MemSz,TotalRuntime," | tee $RES_PATH
 cat /sys/kernel/mm/pfa_stat_label | tee -a $RES_PATH
 
 echo "Full Size"

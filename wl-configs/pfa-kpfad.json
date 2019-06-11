@@ -1,0 +1,15 @@
+{
+  "name" : "pfa-kpfad",
+  "workdir" : "pfa-exp",
+  "jobs" : [
+  {
+    "name" : "client",
+    "base" : "pfa-br.json",
+    "linux-config" : "linux-configs/br-kpfad-em-pfa"
+  },
+  {
+    "name" : "memblade",
+    "base" : "dummy.json"
+  }
+  ]
+}

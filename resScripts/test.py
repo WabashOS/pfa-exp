@@ -39,11 +39,12 @@ elif (outBase / 'pfa-br-test-client').exists():
     stats = fromUart(outBase / 'pfa-br-test-client' / 'uartlog')
 else:
     print("Failure: Couldn't find results directory")
+    sys.exit(1)
 
 print("Stats: ")
 print(stats)
 
-if int(stats['n_fetched']) <= 100:
+if int(stats['n_fetched']) <= 10:
     print("Failure: Didn't seem to fetch enough pages: " + str(stats['n_fetched']))
 else:
     print("Passed")
