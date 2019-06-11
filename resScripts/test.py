@@ -33,10 +33,13 @@ def fromFile(csvPath):
     with open(str(csvPath), 'r') as csvF:
         return next(csv.DictReader(csvF))
 
-if (outBase / 'pfa-fed-test-client').exists():
-    stats = fromFile(outBase / 'pfa-fed-test-client' / 'test_res.csv')
-elif (outBase / 'pfa-br-test-client').exists():
-    stats = fromUart(outBase / 'pfa-br-test-client' / 'uartlog')
+fedOuts = list(outBase.glob("./pfa-fed-test-*-client"))
+brOuts = list(outBase.glob("./pfa-br-test-*-client"))
+
+if len(fedOuts) != 0:
+    stats = fromFile(fedOuts[0] / 'test_res.csv')
+elif len(brOuts) != 0:
+    stats = fromUart(brOuts[0] / 'uartlog')
 else:
     print("Failure: Couldn't find results directory")
     sys.exit(1)

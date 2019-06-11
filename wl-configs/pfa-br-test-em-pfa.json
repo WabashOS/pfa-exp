@@ -1,7 +1,6 @@
 {
-  "name" : "pfa-br-test",
+  "name" : "pfa-br-test-em-pfa",
   "workdir" : "pfa-exp",
-  "post_run_hook" : "resScripts/test.py",
   "testing" : {
     "refDir" : "refOutputs/test"
   },
@@ -9,7 +8,8 @@
   {
     "name" : "client",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-pfa",
+    "post_run_hook" : "resScripts/test.py",
+    "linux-config" : "linux-configs/br-em-pfa",
     "command" : "cd /root; ./test.sh"
   },
   {
