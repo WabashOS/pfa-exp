@@ -33,8 +33,8 @@ def fromFile(csvPath):
     with open(str(csvPath), 'r') as csvF:
         return next(csv.DictReader(csvF))
 
-fedOuts = list(outBase.glob("./pfa-fed-test-*-client"))
-brOuts = list(outBase.glob("./pfa-br-test-*-client"))
+fedOuts = list(outBase.glob("./pfa-fed-test-*client"))
+brOuts = list(outBase.glob("./pfa-br-test-*client"))
 
 if len(fedOuts) != 0:
     stats = fromFile(fedOuts[0] / 'test_res.csv')

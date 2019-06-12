@@ -20,7 +20,7 @@ SUITE_PASS=true
 
 # Actual tests begin
 echo "Running Qemu-only Tests"
-QEMU_TESTS="@(pfa-br-test-em-pfa|pfa-br-test-em-mb)"
+QEMU_TESTS="@(pfa-br-test-em-pfa|pfa-br-test-em-mb|pfa-fed-test-em-mb|pfa-fed-test-em-pfa)"
 ./marshal clean workloads/$QEMU_TESTS.json
 ./marshal test workloads/$QEMU_TESTS.json
 if [ ${PIPESTATUS[0]} != 0 ]; then

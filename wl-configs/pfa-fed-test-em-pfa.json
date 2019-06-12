@@ -1,0 +1,21 @@
+{
+  "name" : "pfa-fed-test-em-pfa",
+  "workdir" : "pfa-exp",
+  "testing" : {
+    "refDir" : "refOutputs/test/"
+  },
+  "jobs" : [
+    {
+      "name" : "client",
+      "base" : "pfa-fed.json",
+      "outputs" : [ "/root/test_res.csv" ],
+      "command" : "cd root/; rm -f test_res.csv; ./init_cg.sh; python3 ./pfa.py 512000 benchmarks/unit/unit",
+      "post_run_hook" : "resScripts/test.py",
+      "linux-config" : "linux-configs/fed-em-pfa"
+    },
+    {
+      "name" : "memblade",
+      "base" : "dummy.json"
+    }
+  ]
+}

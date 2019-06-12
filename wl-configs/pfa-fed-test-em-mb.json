@@ -1,7 +1,6 @@
 {
-  "name" : "pfa-fed-test",
+  "name" : "pfa-fed-test-em-mb",
   "workdir" : "pfa-exp",
-  "post_run_hook" : "resScripts/test.py",
   "testing" : {
     "refDir" : "refOutputs/test/"
   },
@@ -11,7 +10,8 @@
       "base" : "pfa-fed.json",
       "outputs" : [ "/root/test_res.csv" ],
       "command" : "cd root/; rm -f test_res.csv; ./init_cg.sh; python3 ./pfa.py 512000 benchmarks/unit/unit",
-      "linux-config" : "linux-configs/fed-real-pfa"
+      "post_run_hook" : "resScripts/test.py",
+      "linux-config" : "linux-configs/fed-em-mb"
     },
     {
       "name" : "memblade",
