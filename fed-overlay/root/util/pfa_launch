@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Note we have to have pfa_exec here because run_cg forks in Fedora and adding
+# to the PFA must be the last thing we do.
+run_cg pfa_exec $@

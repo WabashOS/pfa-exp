@@ -1,5 +1,4 @@
 #!/bin/sh
-echo $$ > /sys/fs/cgroup/pfa/cgroup.procs
 echo $$ > /sys/kernel/mm/pfa_stat
 
 # Experiments run on core 1. This works best if the kernel cmdline includes
@@ -10,4 +9,4 @@ if [ -f /sys/kernel/mm/pfa_tsk ]; then
   echo $$ > /sys/kernel/mm/pfa_tsk
 fi
 
-exec $@
+exec run_cg $@

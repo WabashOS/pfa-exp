@@ -2,5 +2,5 @@
   "name" : "pfa-manual",
   "workdir" : "pfa-exp",
   "base" : "pfa-fed.json",
-  "linux-config" : "linux-configs/fed-qemu"
+  "linux-config" : "linux-configs/fed-em-pfa"
 }

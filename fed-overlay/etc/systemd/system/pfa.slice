@@ -1,0 +1,7 @@
+[Unit]
+Description=PFA Experiments
+DefaultDependencies=no
+Before=slices.target pfa.service
+
+[Slice]
+MemoryLimit=1G

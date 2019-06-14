@@ -1,0 +1,15 @@
+#!/bin/sh
+# This command executes the command in the PFA without interacting with cgroups.
+# This command is not intended to be called directly (it's called by pfa_launch)
+echo $$ > /sys/kernel/mm/pfa_stat
+
+# Experiments run on core 1. This works best if the kernel cmdline includes
+# isolcpus=1
+# XXX This is causing a bus-error on Fedora when run as a command or run script. I need to try and enable cpuset in systemd and the kernel.
+# taskset -p 0x2 $$
+
+if [ -f /sys/kernel/mm/pfa_tsk ]; then
+  echo $$ > /sys/kernel/mm/pfa_tsk
+fi
+
+exec $@

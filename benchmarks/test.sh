@@ -1,5 +1,7 @@
 #!/bin/sh
 
+RES_FILE=../test_res.csv
+
 while getopts ":hi" opt; do
   case ${opt} in
     i )
@@ -17,8 +19,8 @@ pfa_launch ./unit
 popd
 
 echo "Test Complete:"
-cat /sys/kernel/mm/pfa_stat_label | tee test_res.csv
-cat /sys/kernel/mm/pfa_stat | tee -a test_res.csv
+cat /sys/kernel/mm/pfa_stat_label | tee $RES_FILE
+cat /sys/kernel/mm/pfa_stat | tee -a $RES_FILE
 
 # Firesim will kill everything when the first job finishes. We have to wait for
 # confirmation to avoid killing other simultaneous simulations

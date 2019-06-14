@@ -1,0 +1,2 @@
+#!/bin/bash
+systemctl set-property pfa.slice MemoryLimit=$@

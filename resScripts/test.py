@@ -42,6 +42,7 @@ elif len(brOuts) != 0:
     stats = fromUart(brOuts[0] / 'uartlog')
 else:
     print("Failure: Couldn't find results directory")
+    (outBase / 'FAILURE').touch()
     sys.exit(1)
 
 print("Stats: ")
@@ -49,6 +50,7 @@ print(stats)
 
 if int(stats['n_fetched']) <= 10:
     print("Failure: Didn't seem to fetch enough pages: " + str(stats['n_fetched']))
+    (outBase / 'FAILURE').touch()
 else:
     print("Passed")
     (outBase / 'SUCCESS').touch()

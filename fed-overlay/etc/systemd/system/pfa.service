@@ -1,5 +1,7 @@
 [Unit]
 Description=PFA related initialization (e.g. setting up swap)
+Requires=pfa.slice
+After=pfa.slice
 
 [Service]
 Type=oneshot

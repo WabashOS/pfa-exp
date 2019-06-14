@@ -1,0 +1,2 @@
+#!/bin/bash
+systemd-run --slice=pfa.slice --scope $@

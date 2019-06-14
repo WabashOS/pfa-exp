@@ -9,7 +9,7 @@
       "name" : "client",
       "base" : "pfa-fed.json",
       "outputs" : [ "/root/test_res.csv" ],
-      "command" : "cd root/; rm -f test_res.csv; ./init_cg.sh; python3 ./pfa.py 512000 benchmarks/unit/unit",
+      "command" : "cd root/benchmarks; rm -f ../test_res.csv; ./test.sh",
       "post_run_hook" : "resScripts/test.py",
       "linux-config" : "linux-configs/fed-em-mb"
     },

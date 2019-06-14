@@ -10,7 +10,7 @@
     "base" : "pfa-br.json",
     "post_run_hook" : "resScripts/test.py",
     "linux-config" : "linux-configs/br-em-pfa",
-    "command" : "cd /root; ./test.sh"
+    "command" : "cd /root/benchmarks; ./test.sh"
   },
   {
     "name" : "memblade0",
