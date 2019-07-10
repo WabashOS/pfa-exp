@@ -76,8 +76,10 @@ def runList(tests):
     sp.run("yes yes | firesim terminaterunfarm", cwd=fsDir, check=True, shell=True)
 
 if __name__ == '__main__':
-    tests2n = [ 'pfa-bare-test.json', 'pfa-br-test-real-pfa.json', 'pfa-fed-test-real-pfa.json' ]
+    if len(sys.argv) > 1:
+        testList = sys.argv[1:]
+    else:
+        testList = [ 'pfa-bare-test.json', 'pfa-br-test-real-pfa.json' ]
 
     shutil.copyfile(workdir / 'fs-configs/2n_runtime.ini', fsDir / 'config_runtime.ini')
-    # runList(tests2n)
-    runList(['pfa-bare-test.json'])
+    runList(testsList)
