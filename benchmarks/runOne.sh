@@ -10,7 +10,7 @@ source $PWD/$1
 
 echo "Testing: $CMD $ARGS"
 
-reset_cg $m75
+reset_cg $m25
 mytime pfa_launch $CMD $ARGS
 
 cat /sys/kernel/mm/pfa_stat_label
