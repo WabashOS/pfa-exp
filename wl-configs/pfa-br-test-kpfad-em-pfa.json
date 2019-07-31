@@ -1,7 +1,6 @@
 {
-  "name" : "pfa-br-test-real-pfa",
+  "name" : "pfa-br-test-kpfad-em-pfa",
   "workdir" : "pfa-exp",
-  "post_run_hook" : "resScripts/test.py",
   "testing" : {
     "refDir" : "refOutputs/test"
   },
@@ -9,7 +8,8 @@
   {
     "name" : "client",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-pfa",
+    "post_run_hook" : "resScripts/test.py",
+    "linux-config" : "linux-configs/br-kpfad-em-pfa",
     "command" : "cd /root/benchmarks; ./test.sh"
   },
   {

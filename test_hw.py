@@ -79,7 +79,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         testList = sys.argv[1:]
     else:
-        testList = [ 'pfa-bare-test.json', 'pfa-br-test-real-pfa.json' ]
+        testList = [ 'pfa-bare-test.json', 'pfa-br-test-real-pfa.json', 'pfa-br-test-kpfad-real-pfa.json']
 
     shutil.copyfile(workdir / 'fs-configs/2n_runtime.ini', fsDir / 'config_runtime.ini')
-    runList(testsList)
+    runList(testList)

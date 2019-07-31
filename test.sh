@@ -20,7 +20,7 @@ SUITE_PASS=true
 
 # Actual tests begin
 echo "Running Qemu-only Tests"
-QEMU_TESTS="@(pfa-br-test-em-pfa|pfa-br-test-em-mb|pfa-fed-test-em-mb|pfa-fed-test-em-pfa)"
+QEMU_TESTS="@(pfa-br-test-em-pfa|pfa-br-test-em-mb|pfa-br-test-kpfad-em-pfa)"
 ./marshal clean workloads/$QEMU_TESTS.json
 ./marshal test workloads/$QEMU_TESTS.json
 if [ ${PIPESTATUS[0]} != 0 ]; then
@@ -42,7 +42,7 @@ else
 fi
 
 echo "Running Spike-only Tests"
-SPIKE_TESTS="@(pfa-br-test-real-pfa)"
+SPIKE_TESTS="@(pfa-br-test-real-pfa|pfa-br-test-kpfad-real-pfa)"
 ./marshal -i clean workloads/$SPIKE_TESTS.json
 ./marshal -i test -s workloads/$SPIKE_TESTS.json
 if [ ${PIPESTATUS[0]} != 0 ]; then
