@@ -5,8 +5,9 @@ pushd ../
 ln -s pfa-exp/wl-configs/*.json .
 popd
 
-cp fs-configs/2n_runtime.ini ../../../../../deploy/config_runtime.ini
-cp fs-configs/config_hwdb.ini ../../../../../deploy/
-cp fs-configs/config_build_recipes.ini ../../../../../deploy/
+cp fs-configs/2n_runtime.ini ../../../../deploy/config_runtime.ini
+cp fs-configs/config_hwdb.ini ../../../../deploy/
+cp fs-configs/config_build_recipes.ini ../../../../deploy/
+cp fs-configs/config_build.ini ../../../../deploy/
 
 ./build.sh
