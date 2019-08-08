@@ -1,10 +1,10 @@
 {
-  "name" : "pfa-suite-real-mb",
+  "name" : "pfa-suite-perftest",
   "workdir" : "pfa-exp",
   "post_run_hook" : "resScripts/suite.py",
   "jobs" : [
   {
-    "name" : "qsort",
+    "name" : "realMB",
     "base" : "pfa-br.json",
     "linux-config" : "linux-configs/br-real-mb",
     "outputs" : [ "/root/qsort_res.csv", "/root/config.gz" ],
@@ -15,22 +15,22 @@
     "base" : "dummy.json"
   },
   {
-    "name" : "genome",
+    "name" : "realPFA",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
-    "outputs" : [ "/root/assemble_res.csv", "/root/config.gz" ],
-    "command" : "cd /root/benchmarks; ./runSuite.sh genome.cfg"
+    "linux-config" : "linux-configs/br-real-pfa",
+    "outputs" : [ "/root/qsort_res.csv", "/root/config.gz" ],
+    "command" : "cd /root/benchmarks; ./runSuite.sh qsort.cfg"
   },
   {
     "name" : "memblade1",
     "base" : "dummy.json"
   },
   {
-    "name" : "pagerank",
+    "name" : "kpfad",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
-    "outputs" : [ "/root/pagerank_res.csv", "/root/config.gz" ],
-    "command" : "cd /root/benchmarks; ./runSuite.sh pagerank.cfg"
+    "linux-config" : "linux-configs/br-kpfad-real-pfa",
+    "outputs" : [ "/root/qsort_res.csv", "/root/config.gz" ],
+    "command" : "cd /root/benchmarks; ./runSuite.sh qsort.cfg"
   },
   {
     "name" : "memblade2",
@@ -39,7 +39,7 @@
   {
     "name" : "test",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-mb",
+    "linux-config" : "linux-configs/br-real-pfa",
     "outputs" : [ "/root/config.gz" ],
     "command" : "cd /root/benchmarks; ./test.sh -i"
   },

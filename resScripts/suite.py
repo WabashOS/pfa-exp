@@ -6,28 +6,63 @@ import time
 import shutil
 import csv
 import subprocess as sp
+import configparser
 from pathlib import Path
 
-# csv doesn't use ordered dicts so we have to save this here to get a readable csv output
-csvHeader = ['Config', 'Benchmark', 'Args', 'MemFrac', 'MemSz', 'TotalRuntime', 't_run',
-        't_bookkeeping', 't_rmem_write', 't_rmem_read', 'n_fault', 't_fault', 'n_fault_fetched',
-        'n_swapfault', 'n_pfa_fault', 'n_early_newq', 'n_evicted', 'n_fetched',
-        'n_kpfad', 'n_kpfad_fetched', 't_kpfad']
+def getGitCommit(path):
+    return sp.check_output(['git', 'rev-parse', 'HEAD'], cwd=path).decode("utf-8").strip()
+    
+fsTopDir = (Path(__file__) / '../../../../../../').resolve()
+pfaWorkDir = (Path(__file__) / '../../').resolve()
 
 # firesim output directory
 outBase = Path(sys.argv[1])
-runName = re.search('.*-pfa-suite-(.*)$', outBase.name).group(1)
+parsedOutBase = re.search('(.*)-pfa-suite-(.*)$', outBase.name)
+runDate = parsedOutBase.group(1)
+runName = parsedOutBase.group(2)
 
 # Destination for results
-resDir = Path(__file__).parent / '../pfa-results/raw' / runName / time.strftime("%Y-%m-%d--%H-%M-%S", time.gmtime())
+resDir = pfaWorkDir / 'pfa-results/raw' / runName / runDate
+if resDir.exists():
+    print("Results directory already exists!")
+    print(resDir)
+    sys.exit()
+
 resDir.mkdir(parents=True)
 
 # Directories containing experimental results
 expDirs = [ d for d in outBase.glob('pfa-suite-*') if not re.search('memblade|blank', str(d)) ]
 
-# These should all be the same, it's collected just for posterity
+# Linux Configuration
 shutil.copy(str(expDirs[0] / 'config.gz'), str(resDir))
 sp.call(['gunzip', 'config.gz'], cwd=str(resDir))
+linuxCfg = configparser.ConfigParser()
+with open(resDir / 'config', 'r') as cfgF:
+    linuxCfg.read_string('[root]\n' + cfgF.read())
+linuxCfg = linuxCfg['root']
+
+# FireSim Configs
+runtimeCfg = configparser.ConfigParser()
+runtimeCfg.read(fsTopDir / 'deploy' / 'config_runtime.ini')
+hwdbCfg = configparser.ConfigParser()
+hwdbCfg.read(fsTopDir / 'deploy' / 'config_hwdb.ini')
+
+# Global configuration information for this run
+runCfg = {
+        'hwconfig' : runtimeCfg['targetconfig']['defaulthwconfig'],
+        'agfi' : hwdbCfg[runtimeCfg['targetconfig']['defaulthwconfig']]['agfi'],
+        'linklatency' : runtimeCfg['targetconfig']['linklatency'],
+        'expName' : runName,
+        'dateTime' : runDate,
+        'qDepth' : linuxCfg['CONFIG_PFA_NEWQ_SIZE'],
+        'kpfad' : linuxCfg.get('CONFIG_PFA_KPFAD', 'n'),
+        'pfaEm' : linuxCfg.get('CONFIG_PFA_EM', 'n'),
+        'membladeEm' : linuxCfg.get('CONFIG_MEMBLADE_EM', 'n'),
+        'debugMode' : linuxCfg.get('CONFIG_PFA_DEBUG', 'n'),
+        'verboseMode' : linuxCfg.get('CONFIG_PFA_VERBOSE', 'n'),
+        'linuxCommit' : getGitCommit(pfaWorkDir / 'riscv-linux'),
+        'pfaCommit' : getGitCommit(pfaWorkDir)
+        }
 
 csvRes = []
 for exp in expDirs:
@@ -39,10 +74,10 @@ for exp in expDirs:
             csvRes += list(res)
 
 for r in csvRes:
-    r['Config'] = runName
+    r.update(runCfg)
 
 with open(str(resDir / 'results.csv'), 'w') as resF:
-    writer = csv.DictWriter(resF, fieldnames=csvHeader)
+    writer = csv.DictWriter(resF, fieldnames=csvRes[0].keys())
     writer.writeheader()
     for res in csvRes:
         writer.writerow(res)

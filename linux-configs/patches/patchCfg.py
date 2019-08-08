@@ -35,7 +35,7 @@ def applyPatch(basePath, patchPath):
             if not match:
                 sys.exit("Couldn't parse line in patch: " + line)
             opt = match.group(1)
-            patchPattern = re.compile("^# " + opt + " is not set" + "$|^" + opt + "=*.$")
+            patchPattern = re.compile("^# " + opt + " is not set" + "$|^" + opt + "=.*$")
             opts.append( (patchPattern, line) )
 
     with open(basePath, 'r') as baseF:

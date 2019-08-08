@@ -5,7 +5,7 @@
   {
     "name" : "client",
     "base" : "pfa-br.json",
-    "linux-config" : "linux-configs/br-real-pfa"
+    "linux-config" : "linux-configs/br-em-pfa"
   },
   {
     "name" : "memblade",
