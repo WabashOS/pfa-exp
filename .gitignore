@@ -1,4 +1,6 @@
 spike-install
+benchmarks/genome/assemble
+benchmarks/qsort/qsort
 
 # Vim temp files
 *.swp
