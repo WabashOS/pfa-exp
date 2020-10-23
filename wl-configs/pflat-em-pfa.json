@@ -4,7 +4,7 @@
   "workdir" : "pfa-exp",
   "base" : "pfa-br.json",
   "linux-config" : "linux-configs/br-pflat-em-pfa",
-  "command" : "cd /root; ./pflat.sh",
+  "command" : "cd /root/benchmarks; ./pflat.sh",
   "testing" : {
     "refDir" : "refOutputs/pflat"
   }

@@ -9,6 +9,7 @@
     {
       "name" : "client",
       "base" : "pfa-br.json",
+      "command" : "cd /root/benchmarks && ./pflat.sh",
       "linux-config" : "linux-configs/br-pflat-real-pfa"
     },
     {
