@@ -9,7 +9,7 @@
     {
       "name" : "client",
       "base" : "pfa-br.json",
-      "linux-config" : "linux-configs/pflat-real-pfa"
+      "linux-config" : "linux-configs/br-pflat-real-pfa"
     },
     {
       "name" : "memblade",

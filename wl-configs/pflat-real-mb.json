@@ -9,7 +9,7 @@
     {
       "name" : "client",
       "base" : "pfa-br.json",
-      "linux-config" : "linux-configs/pflat-real-mb",
+      "linux-config" : "linux-configs/bf-pflat-real-mb",
       "command" : "cd /root; ./pflat.sh"
     },
     {

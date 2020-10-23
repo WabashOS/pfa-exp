@@ -2,7 +2,7 @@
   "name" : "pflat-manual",
   "workdir" : "pfa-exp",
   "base" : "pfa-br.json",
-  "linux-config" : "linux-configs/pflat-em-mb",
+  "linux-config" : "linux-configs/br-pflat-em-mb",
   "testing" : {
     "refDir" : "refOutputs/pflat"
   }

@@ -3,8 +3,7 @@
   "post_run_hook" : "resScripts/pflat_res.py",
   "workdir" : "pfa-exp",
   "base" : "pfa-br.json",
-  "linux-config" : "linux-configs/pflat-em-mb",
-  "command" : "cd /root; ./pflat.sh",
+  "linux-config" : "linux-configs/br-pflat-em-mb",
   "testing" : {
     "refDir" : "refOutputs/pflat"
   }
