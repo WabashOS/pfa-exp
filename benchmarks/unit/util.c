@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <inttypes.h>
+#include <sys/types.h>
 #include "util.h"
 
 #define MAX(A, B) ((A > B) ? A : B)
@@ -29,6 +30,51 @@ int start_pflat(void)
   fprintf(lat_file, "0");
   fclose(lat_file);
   return 1;
+}
+
+// Resets the stats sysfs file and returns the open FILE*
+int startStat(void)
+{
+    pid_t pid = getpid();
+
+    FILE *statF = fopen("/sys/kernel/mm/pfa_stat", "w");
+    if(!statF) {
+        printf("Failed to open stat file\n");
+        return 0;
+    }
+
+    fprintf(statF, "%d\n", pid);
+    fclose(statF);
+
+    return 1;
+}
+
+int stopStat(void)
+{
+    char datStr[256];
+    char lblStr[256];
+
+    FILE *statF = fopen("/sys/kernel/mm/pfa_stat", "r");
+    if(!statF) {
+        printf("Failed to open stat file\n");
+        return 0;
+    }
+
+    fgets(datStr, 255, statF);
+    fclose(statF);
+
+    FILE *lblF = fopen("/sys/kernel/mm/pfa_stat_label", "r");
+    if(!lblF) {
+        printf("Failed to get stat labels\n");
+        return 0;
+    }
+
+    fgets(lblStr, 255, lblF);
+    fclose(lblF);
+
+    printf("PFA STATS\n");
+    printf("%s%s", lblStr, datStr);
+    return 1;
 }
 
 int time_fault(void)
@@ -59,10 +105,19 @@ int time_fault(void)
   /* Might race with eviction */
   sleep(1);
 
+  // Reset Stats
+  if(!startStat()) {
+      return 0;
+  }
+  
   /* Fault on the vaddr */
   int64_t start = get_cycle();
   val = *(volatile uint64_t *)vaddr;
   int64_t end = get_cycle();
+
+  if(!stopStat()) {
+      return 0;
+  }
 
   /* Read the start time of the handler from the kernel (this will give us the
    * trap latency) */
@@ -88,10 +143,10 @@ int time_fault(void)
 
   printf("Trap started at: %ld\n", pf_start_time);
 
-  printf("Faulted once: \n");
-  printf("Start: %ld\tEnd: %lu\n", start, end);
-  printf("Trap took %ld cycles\n", pf_start_time - start);
-  printf("End-To-End Took %ld cycles\n", end - start);
+  printf("PFLAT STAT\n");
+  printf("trap,e2e\n");
+  printf("%ld,%ld\n", pf_start_time - start, end - start);
+
   return 1;
 }
 
@@ -119,41 +174,41 @@ int do_stuff(size_t size, bool pflat)
       printf("Page Fault Latency test failed, exiting\n");
       return EXIT_FAILURE;
     }
-  }
-
-  /* Walk through the array randomly touching/reading in CONTIGUITY sized groups */
-  printf("Done initializing memory. Starting the touchy touchy. (pid=%d)\n", getpid());
-  for(off_t i = 0; i < size / CONTIGUITY; i++)
-  {
-    uint64_t idx = big_rand() % size;
-    off_t contig_end = MIN(size - 1, idx + CONTIGUITY);
-    for(int j = idx; j < contig_end; j++)
-    {
-      int write = rand();
-      if((write % 100) < WRITE_RATIO) {
-        /* Write! */
-        arr[idx] = idx;
-      } else {
-        /* Read! */
-        volatile uint8_t a = arr[idx];
+  } else {
+      /* Walk through the array randomly touching/reading in CONTIGUITY sized groups */
+      printf("Done initializing memory. Starting the touchy touchy. (pid=%d)\n", getpid());
+      for(off_t i = 0; i < size / CONTIGUITY; i++)
+      {
+        uint64_t idx = big_rand() % size;
+        off_t contig_end = MIN(size - 1, idx + CONTIGUITY);
+        for(int j = idx; j < contig_end; j++)
+        {
+          int write = rand();
+          if((write % 100) < WRITE_RATIO) {
+            /* Write! */
+            arr[idx] = idx;
+          } else {
+            /* Read! */
+            volatile uint8_t a = arr[idx];
+          }
+        }
       }
-    }
-  }
 
-  printf("Done with touchy touch. Checking array. (pid=%d)\n", getpid());
-  /* Check that the array is still good */
-  for(size_t i = 0; i < size; i++)
-  {
-    if(arr[i] != i % 256) {
-      printf("Array Corrupted Son! (watchudid?!) (pid=%d)\n", getpid());
-      /* size_t end = MIN(size, i+8192); */
-      /* for(; i < end; i++) { */
-      /*   printf("arr[%d] = %d!\n", i, arr[i]); */
-      /* } */
-      return EXIT_FAILURE;
-    }
+      printf("Done with touchy touch. Checking array. (pid=%d)\n", getpid());
+      /* Check that the array is still good */
+      for(size_t i = 0; i < size; i++)
+      {
+        if(arr[i] != i % 256) {
+          printf("Array Corrupted Son! (watchudid?!) (pid=%d)\n", getpid());
+          /* size_t end = MIN(size, i+8192); */
+          /* for(; i < end; i++) { */
+          /*   printf("arr[%d] = %d!\n", i, arr[i]); */
+          /* } */
+          return EXIT_FAILURE;
+        }
+      }
+      printf("Array looks reeeeeal gud (pid=%d)\n", getpid());
   }
-  printf("Array looks reeeeeal gud (pid=%d)\n", getpid());
 
   return EXIT_SUCCESS;
 }
