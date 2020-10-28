@@ -10,4 +10,13 @@ cp fs-configs/config_hwdb.ini ../../../../deploy/
 cp fs-configs/config_build_recipes.ini ../../../../deploy/
 cp fs-configs/config_build.ini ../../../../deploy/
 
+pushd linux-configs/patches
+./patchCfg.py ../br *.patch
+./patchCfg.py ../fed *.patch
+popd
+
+pushd ../dummy
+./build.sh
+popd
+
 ./build.sh
