@@ -103,8 +103,8 @@ int time_fault(void)
   printf("Gonna probe vaddr: 0x%"PRIx64"\n", vaddr);
 
   /* Might race with eviction */
-  for(int i = 0; i < 2; i++) {
-    printf("Waiting 1s (%d / 3)\n", i);
+  for(int i = 0; i < 1; i++) {
+    printf("Waiting 1s (%d / 3)\n", i+1);
     sleep(1);
   }
 
