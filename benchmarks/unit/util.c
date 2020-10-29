@@ -103,7 +103,10 @@ int time_fault(void)
   printf("Gonna probe vaddr: 0x%"PRIx64"\n", vaddr);
 
   /* Might race with eviction */
-  sleep(1);
+  for(int i = 0; i < 2; i++) {
+    printf("Waiting 1s (%d / 3)\n", i);
+    sleep(1);
+  }
 
   // Reset Stats
   if(!startStat()) {
@@ -136,6 +139,7 @@ int time_fault(void)
   } else if(pf_start_time < start) {
     printf("WARNING: Page fault start time unreasonable:\n");
     printf("\tfault initiated: %ld\n", start);
+    printf("\tfault returned: %ld\n", end);
     printf("\tfault entered:   %ld\n", pf_start_time);
     printf("\tfault e2e: %ld\n", end - start);
   }
