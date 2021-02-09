@@ -1,12 +1,12 @@
 [submodule "riscv-linux"]
 	path = riscv-linux
-	url = git@github.com:WabashOS/riscv-linux.git
+	url = https://github.com/WabashOS/riscv-linux.git
 [submodule "riscv-isa-sim"]
 	path = riscv-isa-sim
-	url = git@github.com:WabashOS/riscv-isa-sim.git
+	url = https://github.com/WabashOS/riscv-isa-sim.git
 [submodule "pfa-bare-test"]
 	path = pfa-bare-test
-	url = git@github.com:WabashOS/riscv-pk.git
+	url = https://github.com/WabashOS/riscv-pk.git
 [submodule "pfa_results"]
 	path = pfa-results
-	url = git@github.com:NathanTP/pfa_results.git
+	url = https://github.com/NathanTP/pfa_results.git
