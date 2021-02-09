@@ -1,0 +1,15 @@
+# Workload:
+#   *pflat-real-pfa.json
+# Commits:
+#   * firesim: git@github.com:firesim/firesim.git @ 072f7197814133c6c11d3831f61b0bacb36576b3 
+# HW Config:
+#   * pfa256 (agfi-0c63c859d9d62c53f)
+#   * linklatency 1610
+# 
+# Notes: The only meaningful numbers are e2e and t_rmem_read_raw. Other numbers
+# cannot be accurately recorded for PFA runs. This run had some minor page faults
+# during the experiment that didn't affect the e2e time but did add a spurious
+# t_fault time (ignore that value).
+#
+t_rmem_read,t_fault,trap,e2e,t_rmem_read_raw
+0,5054,-6702014410,8224,9011

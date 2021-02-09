@@ -1,0 +1,2 @@
+Files are named according to:
+${experiment mode}_${experiment name}_${link latency in cycles}.csv

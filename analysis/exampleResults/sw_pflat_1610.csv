@@ -1,0 +1,19 @@
+# Workload:
+#   *pflat-real-mb.json
+# Commits:
+#   * firesim: git@github.com:firesim/firesim.git @ 072f7197814133c6c11d3831f61b0bacb36576b3
+# HW Config:
+#   * pfa256 (agfi-0c63c859d9d62c53f)
+#   * linklatency 1610
+#
+# Notes:
+#   *This test is not deterministic. It requires a very precise HW and SW
+#   configuration in order to reproduce. This is because it relies on
+#   intentionally triggering a remote page fault. While the software
+#   configuration is built deterministically, it is possible that minor changes
+#   to the workload or non-determinism in the simulator may cause different
+#   results.
+#  * All values are valid in the SW test because we can measure each step
+#   (unlike the PFA which does everything in HW)
+t_rmem_read,t_fault,trap,e2e,t_rmem_read_raw
+8796,24556,528,25576,8987

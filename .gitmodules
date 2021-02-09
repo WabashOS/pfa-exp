@@ -7,6 +7,3 @@
 [submodule "pfa-bare-test"]
 	path = pfa-bare-test
 	url = https://github.com/WabashOS/riscv-pk.git
-[submodule "pfa_results"]
-	path = pfa-results
-	url = https://github.com/NathanTP/pfa_results.git
